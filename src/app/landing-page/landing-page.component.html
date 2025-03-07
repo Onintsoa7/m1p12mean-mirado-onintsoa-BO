@@ -1,1 +1,24 @@
-<p>landing-page works!</p>
+<div class="landing-page">
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>Welcome to <span>Car-Kara</span></h1>
+      <p>Votre partenaire de confiance pour des véhicules d'exception.</p>
+      <button class="cta-button">Découvrir</button>
+    </div>
+  </section>
+
+  <section class="services-section">
+    <div class="service" *ngFor="let service of services; let i = index" [style.animationDelay]="i * 0.3 + 's'">
+      <h3>{{service.title}}</h3>
+      <p>{{service.description}}</p>
+    </div>
+  </section>
+  <app-header></app-header>
+  <section class="services-section">
+    <div class="service" *ngFor="let service of services; let i = index" [style.animationDelay]="i * 0.3 + 's'">
+      <h3>{{service.title}}</h3>
+      <p>{{service.description}}</p>
+    </div>
+  </section>
+  <app-footer></app-footer>
+</div>

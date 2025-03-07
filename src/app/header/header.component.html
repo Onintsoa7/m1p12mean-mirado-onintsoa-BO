@@ -1,0 +1,30 @@
+<header class="header" [ngClass]="{'visible': isHeaderVisible}">
+  <nav class="nav">
+    <div class="logo">Car-Kara</div>
+
+    <!-- Bouton du menu hamburger -->
+    <button class="menu-toggle" (click)="toggleMenu()">
+      ☰
+    </button>
+
+    <!-- Liste principale -->
+    <ul [ngClass]="{'menu-open': isMenuOpen}">
+      <li><a href="#">Accueil</a></li>
+
+      <!-- Bouton "Services" qui affiche un sous-menu -->
+      <li class="dropdown">
+        <a href="#" (click)="toggleServicesMenu($event)">Services ▼</a>
+
+        <!-- Sous-menu des services -->
+        <ul class="submenu" [ngClass]="{'submenu-open': isServicesMenuOpen}">
+          <li><a href="#">Réparation</a></li>
+          <li><a href="#">Entretien</a></li>
+          <li><a href="#">Vente de véhicules</a></li>
+          <li><a href="#">Assistance routière</a></li>
+        </ul>
+      </li>
+      <li><a href="#">A propos</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+</header>

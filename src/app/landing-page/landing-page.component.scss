@@ -1,0 +1,111 @@
+.landing-page {
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  overflow-x: hidden;
+
+  .hero-section {
+    height: 100vh;
+    background: url('../../assets/images/garage-hero.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    position: sticky;
+
+    .hero-content {
+      animation: fadeIn 1.5s ease-in-out;
+
+      h1 {
+        font-size: 3rem;
+        span {
+          color: #FFD700;
+        }
+      }
+
+      p {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+      }
+
+      .cta-button {
+        margin-top: 2rem;
+        padding: 10px 20px;
+        font-size: 1rem;
+        font-weight: 600;
+        background-color: #008080;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.3s;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+        }
+      }
+    }
+  }
+
+  .services-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem auto;
+    flex-wrap: wrap;
+
+    .service {
+      margin: 1rem;
+    }
+
+    // Pour tablettes (entre 768px et 1024px)
+    @media (max-width: 1024px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-left: 0;
+      gap: 1rem;
+      height: auto;
+    }
+
+    // Pour mobiles (moins de 768px)
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      margin-left: 0;
+      gap: 1rem;
+      height: auto;
+      .service {
+        width: 90%; // pleine largeur
+        margin: 0.5rem;
+      }
+    }
+
+    .service {
+      background: #f8f8f8;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      width: 280px;
+      animation: slideUp 1s ease-in-out forwards;
+      opacity: 0;
+
+      h3 {
+        color: #008080;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
+
+// Keyframes animations
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}

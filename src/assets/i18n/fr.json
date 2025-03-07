@@ -1,0 +1,10 @@
+{
+  "WELCOME": "Bienvenue chez",
+  "EMAIL": "Email",
+  "EMAIL_PLACEHOLDER": "Entrez votre email ici",
+  "PASSWORD": "Mot de passe",
+  "PASSWORD_PLACEHOLDER": "Entrez votre mot de passe",
+  "CONNECT": "Se connecter",
+  "ALREADY_HAVE_ACCOUNT": "Vous avez déjà un compte ?",
+  "LOGIN": "Se connecter"
+}
