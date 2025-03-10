@@ -1,0 +1,170 @@
+    .profile-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: #f5f5f5;
+        padding: 20px;
+        border-radius: 8px;
+        height: 10rem;
+        margin: 25px;
+    }
+
+    .profile-card {
+        display: flex;
+        align-items: center;
+        background: #f5f5f5;
+        padding: 20px;
+        border-radius: 8px;
+        width: 100%;
+    }
+
+    .profile-picture {
+        width: 8rem;
+        height: 8rem;
+        background: #add8e6;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+
+    .profile-info {
+        flex-grow: 1;
+    }
+
+    .edit {
+        height: 100px;
+        margin: 5px;
+        bottom: 0;
+        display: flex;
+        flex-direction: row;
+        align-content: flex-end;
+        justify-content: center;
+        align-items: flex-end;
+
+
+    }
+
+    .edit-button {
+        border: none;
+        padding: 12px;
+        cursor: pointer;
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        background: #006666;
+        font-size: 16pt;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .edit-button:hover {
+        transform: scale(1.15);
+        background: #004d4d;
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .details-container {
+        margin: 25px;
+        padding: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .profil-car,
+    .profil-visit {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        width: 100%;
+    }
+
+    .profil-car h3,
+    .profil-visit h3 {
+        color: #333;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .profil-car table,
+    .profil-visit table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .profil-car th,
+    .profil-car td,
+    .profil-visit th,
+    .profil-visit td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .profil-car th,
+    .profil-visit th {
+        background: #006666;
+        color: white;
+    }
+
+    .profil-car tr:hover,
+    .profil-visit tr:hover {
+        background: #f1f1f1;
+    }
+
+    .add-button {
+        background: #006666;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        margin-bottom: 10px;
+        height: 35px;
+    }
+
+    .add-button:hover {
+        background: #004d4d;
+        transform: scale(1.05);
+        color: #FFD700;
+    }
+
+    .profil-voiture-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: end;
+    }
+
+    @media screen and (max-width: 768px) {
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            align-items: center;
+            text-align: center;
+        }
+
+        .profile-card {
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .profile-picture {
+            margin-right: 0;
+            margin-bottom: 10px;
+        }
+
+        .edit {
+            justify-content: center;
+            align-items: center;
+        }
+    }
