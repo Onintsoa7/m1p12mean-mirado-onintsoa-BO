@@ -48,7 +48,6 @@
         }
       }
 
-      // ✅ Sous-menu caché par défaut
       .submenu {
         display: none;
         position: absolute;
@@ -74,14 +73,12 @@
         }
       }
 
-      // ✅ Lorsque `submenu-open` est activé, on affiche le sous-menu
       .submenu-open {
         display: block;
       }
     }
   }
 
-  // ✅ Responsive pour mobile
   @media (max-width: 768px) {
     .menu-toggle {
       display: block;
