@@ -1,12 +1,18 @@
 .profil-note {
     text-align: center;
     padding: 20px;
+    color: white;
+    padding-bottom: 2pc;
 }
 
 .etoiles-notes {
     margin-top: 10px;
 }
-
+.container-notes {
+    h2{
+        color: whitesmoke;
+    }
+}
 .emoji-rating {
     display: flex;
     justify-content: center;
@@ -15,6 +21,7 @@
 }
 
 .emoji-rating span {
+    transition: 500ms;
     margin: 0 10px;
     transition: transform 0.2s, filter 0.2s;
 }

@@ -1,53 +1,19 @@
 <app-header-pages></app-header-pages>
-<div class="profile-container">
-  <div class="profile-card">
-    <div class="profile-picture"></div>
-    <div class="profile-info">
-      <h3>Onintsoa Tsiafoy</h3>
-      <p>tsiafoygmail.com</p>
+
+<div class="container-p">
+  <app-profil-container (editClicked)="onEditProfile()"></app-profil-container>
+
+  <ng-container *ngIf="isEditing === false">
+    <app-profil-data></app-profil-data>
+  </ng-container>
+
+  <ng-container *ngIf="isEditing === true">
+    <div class="profil-edit">
+      <app-profil-edit (cancelEdit)="onCancelEdit()"></app-profil-edit>
     </div>
-    <div class="edit">
-      <button class="edit-button"> <i class="fas fa-edit"></i></button>
-    </div>
-  </div>
+  </ng-container>
+
+  <app-notes></app-notes>
 </div>
-<div class="details-container">
-  <div class="profil-car">
-    <div class="profil-voiture-header">
-      <h3>Vos voitures</h3>
-      <button class="add-button">Ajouter</button>
-    </div>
-    <table>
-      <tr>
-        <th>Marque</th>
-        <th>Année</th>
-        <th>Numéro</th>
-      </tr>
-      <tr *ngFor="let car of cars">
-        <td>{{ car.brand }}</td>
-        <td>{{ car.year }}</td>
-        <td>{{ car.number }}</td>
-      </tr>
-    </table>
-  </div>
-  <div class="profil-visit">
-    <h3>Vos visites</h3>
-    <table>
-      <tr>
-        <th>Voiture</th>
-        <th>Date</th>
-        <th>Service</th>
-        <th>Details</th>
-      </tr>
-      <tr *ngFor="let visit of visits">
-        <td>{{ visit.car }}</td>
-        <td>{{ visit.date }}</td>
-        <td>{{ visit.service }}</td>
-        <td><a href="#">Voir détails</a></td>
-      </tr>
-    </table>
-  </div>
-</div>
-<app-notes></app-notes>
 
 <app-footer></app-footer>

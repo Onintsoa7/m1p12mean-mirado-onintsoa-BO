@@ -1,0 +1,104 @@
+.details-container {
+    margin: 25px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.profil-car,
+.profil-visit {
+    background: #e0e0e0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    width: 48%; 
+    min-width: 300px; 
+}
+
+.profil-car h3,
+.profil-visit h3 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.profil-car table,
+.profil-visit table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.profil-car th,
+.profil-car td,
+.profil-visit th,
+.profil-visit td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.profil-car th,
+.profil-visit th {
+    background: #006666;
+    color: white;
+}
+
+.profil-car tr:hover,
+.profil-visit tr:hover {
+    background: #f1f1f1;
+}
+
+.add-button {
+    background: #006666;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 10px;
+    height: 35px;
+}
+
+.add-button:hover {
+    background: #004d4d;
+    transform: scale(1.05);
+    color: #FFD700;
+}
+
+.profil-voiture-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+}
+
+
+@media (max-width: 768px) {
+    .details-container {
+        flex-direction: column;
+        padding: 10px;
+        margin: 0;
+        width: 80%;
+    }
+
+    .profil-car,
+    .profil-visit {
+        width: 95%; 
+        margin: 10px 0; 
+    }
+
+    .profil-voiture-header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .add-button {
+        width: 100%; 
+        text-align: center;
+    }
+}
