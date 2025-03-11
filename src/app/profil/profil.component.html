@@ -1,9 +1,19 @@
 <app-header-pages></app-header-pages>
+
 <div class="container-p">
-  <app-profil-container  (actionEvent)="showProfilEdit()"></app-profil-container>
-  <app-profil-data></app-profil-data>
+  <app-profil-container (editClicked)="onEditProfile()"></app-profil-container>
+
+  <ng-container *ngIf="isEditing === false">
+    <app-profil-data></app-profil-data>
+  </ng-container>
+
+  <ng-container *ngIf="isEditing === true">
+    <div class="profil-edit">
+      <app-profil-edit (cancelEdit)="onCancelEdit()"></app-profil-edit>
+    </div>
+  </ng-container>
+
   <app-notes></app-notes>
-  <app-profil-edit *ngIf="showProfil"></app-profil-edit>
 </div>
 
 <app-footer></app-footer>

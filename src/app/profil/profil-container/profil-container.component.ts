@@ -7,12 +7,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './profil-container.component.scss'
 })
 export class ProfilContainerComponent {
-  showProfil = false;
-  // showProfilEdit(){
-  //   this.showProfil = !this.showProfil;
-  // }
-  @Output() actionEvent = new EventEmitter<boolean>();
-  triggerParentFunction() {
-    this.actionEvent.emit(true);
+  @Output() editClicked = new EventEmitter<void>();
+
+  onEditClick() {
+    this.editClicked.emit();
   }
 }

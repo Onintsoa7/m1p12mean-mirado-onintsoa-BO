@@ -13,8 +13,12 @@ import { ProfilEditComponent } from './profil-edit/profil-edit.component';
   styleUrl: './profil.component.scss'
 })
 export class ProfilComponent {
-  showProfil = false;
-  showProfilEdit(){
-    this.showProfil = !this.showProfil;
+  isEditing = false;
+
+  onEditProfile() {
+    this.isEditing = true;
+  }
+  onCancelEdit(): void {
+    this.isEditing = false;
   }
 }
