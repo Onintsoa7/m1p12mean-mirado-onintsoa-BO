@@ -6,7 +6,7 @@ import { ServiceComponent } from './service/service.component';
 import { ProfilComponent } from './profil/profil.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'landing-page', pathMatch: 'full' },
+  { path: '', redirectTo: 'profil', pathMatch: 'full' },
   { path: 'landing-page', component: LandingPageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

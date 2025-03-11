@@ -1,12 +1,16 @@
 .footer {
   text-align: center;
   padding: 1.5rem;
-  background-color: #333;
+  background-color: #141a31;
   color: #fff;
   font-family: 'Segoe UI', sans-serif;
   .team {
     margin-top: 1rem;
-
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1rem;
+    
     h3 {
       font-size: 1.2rem;
       margin-bottom: 0.5rem;
@@ -14,12 +18,13 @@
     }
 
     ul {
-      list-style: none;
+      width: 50%;
       padding: 0;
       margin: 0;
-      align-items: center;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      list-style: none;
+      align-items: center;
       justify-content: center;
 
       li {
@@ -55,6 +60,8 @@
       }
 
       ul {
+        width: 100%;
+        flex-direction: column;
         li {
           font-size: 0.9rem;
           padding: 0.4rem;

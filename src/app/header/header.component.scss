@@ -3,10 +3,19 @@
   top: -100px;
   left: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.98);
+  background: #ffd900cd;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: top 0.4s ease-in-out;
   z-index: 1000;
+  color:white;
+
+  .logo{
+    display: flex;
+    justify-content: start;
+    ::ng-deep img{
+      height: 50px;
+    }
+  }
 
   &.visible {
     top: 0;
@@ -36,10 +45,10 @@
 
     li {
       position: relative;
-
+      
       a {
         text-decoration: none;
-        color: #555;
+        color:#006666;
         font-weight: 500;
         transition: color 0.3s;
 
