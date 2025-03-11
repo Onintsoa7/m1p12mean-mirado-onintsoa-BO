@@ -1,29 +1,32 @@
-.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 2rem;
-  background-color: #f5f1ea;
-  border-radius: 10px;
-  max-width: 1000px;
-  margin: auto;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+.service-container {
+  height: 67.4vh;
+  background-color: #141a31;
 }
 
-.form-container {
+.service-text-container{
   flex: 1;
   padding: 2rem;
+  float: left;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 3.2pc;
+  margin-right: 3.2pc;
+}
 
-  h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    color: #333;
-
-    span {
-      color: #008080;
-    }
-  }
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: white;
+}
+.service-title{
+  text-align: center;
+  margin-bottom: 2pc;
+}
+span {
+  color: #FFD700;
 }
 
 .form-group {
@@ -32,18 +35,18 @@
   margin-bottom: 1rem;
 
   label {
-    font-weight: bold;
+    font-weight: lighter;
     margin-bottom: 0.5rem;
+    color: whitesmoke;
   }
 
   select, input {
     padding: 0.7rem;
-    border: 1px solid #ccc;
+    border: 1px solid white;
     border-radius: 5px;
     font-size: 1rem;
   }
 }
-
 .input-group {
   display: flex;
   align-items: center;
@@ -77,7 +80,7 @@
 
 .note {
   font-size: 0.9rem;
-  color: #666;
+  color: white;
   margin-top: 1rem;
 }
 
@@ -98,24 +101,29 @@
   }
 }
 
-.image-container {
-  flex: 1;
-  background-color: #fff;
-  border: 2px solid #ccc;
+::ng-deep  .image-container {
+  img{
+    object-fit: cover;
+    height: 67.4vh;
+  }
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px;
-  border-radius: 10px;
   font-weight: bold;
-  color: #444;
+  height: auto;
 }
-
-@media (max-width: 768px) {
-  .container {
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 1024px) {
+  .service-container {
     flex-direction: column;
-    align-items: center;
+    height: auto;
+    gap: 1rem;
+  }
+
+  .service-text-container {
+    width: 80%;
     text-align: center;
+    margin: 0 auto;
   }
 
   .form-row {
@@ -124,6 +132,58 @@
 
   .image-container {
     width: 100%;
-    margin-top: 2rem;
+    height: auto;
+  }
+
+  .image-service {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .service-text-container {
+    width: 90%;
+    padding: 1rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .image-container {
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+  }
+
+  .image-service {
+    width: 100%;
+    height: auto;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-text-container {
+    width: 95%;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .submit-btn {
+    padding: 0.6rem;
   }
 }
