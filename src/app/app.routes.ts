@@ -4,13 +4,14 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SignupComponent } from './signup/signup.component';
 import { ServiceComponent } from './service/service.component';
 import { ProfilComponent } from './profil/profil.component';
+import { RendezVousComponent } from './rendez-vous/rendez-vous.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'profil', pathMatch: 'full' },
+  { path: '', redirectTo: 'rendezvous', pathMatch: 'full' },
   { path: 'landing-page', component: LandingPageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'services', component: ServiceComponent },
   { path: 'services/:id', component: ServiceComponent },
-  { path: 'profil', component: ProfilComponent }
+  { path: 'profiles', component: ProfilComponent },
+  { path: 'rendezvous', component: RendezVousComponent }
 ];

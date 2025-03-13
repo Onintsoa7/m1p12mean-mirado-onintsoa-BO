@@ -3,15 +3,14 @@
 <div class="container-p">
   <app-profil-container (editClicked)="onEditProfile()"></app-profil-container>
 
-  <ng-container *ngIf="isEditing === false">
-    <app-profil-data></app-profil-data>
-  </ng-container>
+    <app-profil-data *ngIf="isEditing === false"></app-profil-data>
+  
 
-  <ng-container *ngIf="isEditing === true">
+  
     <div class="profil-edit">
-      <app-profil-edit (cancelEdit)="onCancelEdit()"></app-profil-edit>
+      <app-profil-edit *ngIf="isEditing === true" (cancelEdit)="onCancelEdit()"></app-profil-edit>
     </div>
-  </ng-container>
+ 
 
   <app-notes></app-notes>
 </div>

@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -26,5 +26,14 @@ export class HeaderPagesComponent {
   }
   navigateToService(service: any) {
     this.router.navigate(['/services', service.id], { queryParams: { title: service.title, image: service.image } });
+  }
+  navigateToProfil() {
+    this.router.navigate(['/profiles']);
+  }
+  navigateToRendezVous() {
+    this.router.navigate(['/rendezvous']);
+  }
+  navigateToLandingPage() {
+    this.router.navigate(['/landing-page']);
   }
 }

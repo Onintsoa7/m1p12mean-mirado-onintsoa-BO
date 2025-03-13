@@ -35,4 +35,13 @@ export class HeaderComponent {
   navigateToService(service: any) {
     this.router.navigate(['/services', service.id], { queryParams: { title: service.title, image: service.image } });
   }
+  navigateToProfil() {
+    this.router.navigate(['/profiles']);
+  }
+  navigateToRendezVous() {
+    this.router.navigate(['/rendezvous']);
+  }
+  navigateToLandingPage() {
+    this.router.navigate(['/landing-page']);
+  }
 }
