@@ -62,6 +62,8 @@
     transition: all 0.3s ease-in-out;
     margin-bottom: 10px;
     height: 35px;
+    display: flex;
+    align-items: center;
 }
 
 .add-button:hover {
