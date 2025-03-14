@@ -1,0 +1,171 @@
+.landing-page {
+  font-family: 'Segoe UI', sans-serif;
+  color: #ddd;
+  background-color: #141a31;
+  overflow-x: hidden;
+
+  .hero-section {
+    height: 100vh;
+    background: url('../../../public/assets/images/garage-hero.jpg') no-repeat center center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: sticky;
+
+    .hero-content {
+      animation: fadeIn 1.5s ease-in-out;
+
+      h1 {
+        font-size: 3rem;
+
+        span {
+          color: #FFD700;
+        }
+      }
+
+      p {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+
+      .cta-button {
+        margin-top: 2rem;
+        padding: 12px 24px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        background-color: #FFD700;
+        color: #121212;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out, background 0.3s;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+          background-color: #e6c200;
+        }
+      }
+    }
+  }
+
+  .services-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2.5rem auto;
+    flex-wrap: wrap;
+
+    .service {
+      margin: 1.5rem;
+      font-size: 1.1rem;
+    }
+  }
+
+  .content-section {
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+    flex-direction: row;
+  }
+
+  .grid-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // background: #0e162d;
+    border-radius: 10px;
+    padding: 35px;
+    transition: transform 0.3s ease-in-out;
+    margin-right: 20px;
+    margin-left: 20px;
+    // height: 40vh;
+    margin-bottom: 20px;
+    box-shadow: #223066 0px 0px 10px 0px;
+  }
+
+
+  .text-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    margin-left: 40px;
+    margin-right: 30px;
+  }
+
+  .text-content h3 {
+    font-size: 2rem;
+    color: #FFD700;
+    font-weight: 700;
+  }
+
+  .text-content p {
+    font-size: 1.2rem;
+    color: #bbb;
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+
+  .text-content ul li {
+    font-size: 1.1rem;
+    color: #aaa;
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+
+  .text-content ul li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #FFD700;
+    font-weight: bold;
+  }
+
+  ::ng-deep .image-content {
+    img {
+      max-width: 80%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+
+  }
+
+  app-footer {
+    width: 100%;
+    text-align: center;
+    background-color: #141a31;
+    color: #FFD700;
+    padding: 22px 0;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-section {
+    .grid-container {
+      height: auto;
+    }
+  }
+
+  ::ng-deep .image-content {
+    img {
+      display: none;
+    }
+  }
+  .text-content ul li::before {
+    font-size: 8pt;
+  }
+  .text-content p {
+    font-size: 12pt;
+  }
+}

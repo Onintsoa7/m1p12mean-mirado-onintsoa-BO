@@ -1,0 +1,26 @@
+<header class="header">
+  <nav class="nav">
+    <div class="logo">
+      <img src="assets/logo/logo.png" alt="logo" srcset="">
+    </div>
+
+    <!-- Bouton du menu hamburger -->
+    <button class="menu-toggle" (click)="toggleMenu()">
+      ☰
+    </button>
+    <ul [ngClass]="{'menu-open': isMenuOpen}">
+      <li><a (click)="navigateToLandingPage()">Accueil</a></li>
+
+      <li class="dropdown">
+        <a href="#" (click)="toggleServicesMenu($event)">Services ▼</a>
+        <ul class="submenu" [ngClass]="{'submenu-open': isServicesMenuOpen}">
+          <li *ngFor="let service of servicesMenu">
+            <a (click)="navigateToService(service)" style="cursor: pointer;">{{ service.title }}</a>
+          </li>
+        </ul>
+      </li>
+      <li><a (click)="navigateToRendezVous()">Vos Rendez-vous</a></li>
+      <li><a (click)="navigateToProfil()">Votre Profil</a></li>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,21 @@
+<div class="edit-rendez-vous">
+    <h3>Modification Rendez-vous</h3>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="rendezVous.date">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Heure</mat-label>
+      <input matInput type="time" [(ngModel)]="rendezVous.heure">
+    </mat-form-field>
+  
+    <div class="btn-container">
+      <button mat-raised-button class="cancel-btn" (click)="modifier()">Modifier</button>
+      <button mat-raised-button class="submit-btn" (click)="supprimer()">Supprimer</button>
+    </div>
+  </div>
+  

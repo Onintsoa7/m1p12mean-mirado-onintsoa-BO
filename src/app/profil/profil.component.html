@@ -1,0 +1,18 @@
+<app-header-pages></app-header-pages>
+
+<div class="container-p">
+  <app-profil-container (editClicked)="onEditProfile()"></app-profil-container>
+
+    <app-profil-data *ngIf="isEditing === false"></app-profil-data>
+  
+
+  
+    <div class="profil-edit">
+      <app-profil-edit *ngIf="isEditing === true" (cancelEdit)="onCancelEdit()"></app-profil-edit>
+    </div>
+ 
+
+  <app-notes></app-notes>
+</div>
+
+<app-footer></app-footer>

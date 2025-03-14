@@ -1,0 +1,7 @@
+<app-header-pages></app-header-pages>
+<div class="service-container">
+  <app-diagnostic *ngIf="serviceId === '1' && serviceImage" [serviceImage]="serviceImage" [serviceTitle] ="serviceTitle!" ></app-diagnostic>
+  <app-entretien *ngIf="serviceId === '2' && serviceImage" [serviceImage]="serviceImage" [serviceTitle] ="serviceTitle!" ></app-entretien>
+  <app-reparation *ngIf="serviceId === '3' && serviceImage" [serviceImage]="serviceImage" [serviceTitle] ="serviceTitle!"></app-reparation>
+</div>
+<app-footer></app-footer>

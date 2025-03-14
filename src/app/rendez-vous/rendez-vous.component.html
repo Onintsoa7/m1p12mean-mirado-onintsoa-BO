@@ -1,0 +1,27 @@
+<app-header-pages></app-header-pages>
+    <div class="container-r">
+        <div class="titre">
+            <h1>L'etat de vos Rendez-vous</h1>
+        </div>
+        <div class="boucle" *ngFor="let rendezVous of rendezVousList ; let i = index">
+        <div class="data-rendez-vous" >
+          <div class="details-date">
+            <h3>Date: {{ rendezVous.date }} à {{ rendezVous.heure }}</h3>
+            <p>Vehicule: {{ rendezVous.marque }} {{ rendezVous.matricule }}</p>
+            <p>Type de service: {{ rendezVous.type_services }}</p>
+          </div>
+          <div class="details-etat">
+            <span [ngClass]="getEtatIcon(rendezVous.etat).class" class="etat">
+              <i class="fa" [ngClass]="getEtatIcon(rendezVous.etat).icon"></i> 
+              {{ rendezVous.etat }}
+            </span>
+            <span (click)="editRendezVous(i)"><i class="fa fa-edit modifier"></i></span>
+          </div>
+        </div>
+        <app-rendez-vous-edit 
+            *ngIf="rendezVousSelectionne === i"
+            [rendezVous]="rendezVousList[i]">
+        </app-rendez-vous-edit>
+      </div>
+    </div>
+<app-footer></app-footer>
