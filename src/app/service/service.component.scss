@@ -1,3 +1,8 @@
+.service-c{
+  display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 .service-container {
   background-color: #141a31;
 }
@@ -113,6 +118,10 @@ span {
 }
 /* ========== RESPONSIVE DESIGN ========== */
 @media (max-width: 1024px) {
+  .service-c{
+    display: flex;
+      flex-direction: column;
+  }
   .service-container {
     flex-direction: column;
     height: auto;
@@ -141,6 +150,10 @@ span {
 }
 
 @media (max-width: 768px) {
+  .service-c{
+    display: flex;
+      flex-direction: column;
+  }
   .service-container {
     flex-direction: column;
     align-items: center;
@@ -174,6 +187,10 @@ span {
 }
 
 @media (max-width: 480px) {
+  .service-c{
+    display: flex;
+      flex-direction: column;
+  }
   .service-text-container {
     width: 95%;
   }
