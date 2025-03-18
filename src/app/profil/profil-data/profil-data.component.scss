@@ -43,7 +43,7 @@
 
 .profil-car th,
 .profil-visit th {
-    background: #006666;
+    background: var(--color-text);
     color: white;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .add-button {
-    background: #006666;
+    background: var(--color-text);
     color: white;
     border: none;
     padding: 10px 15px;

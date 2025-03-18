@@ -41,7 +41,7 @@
                 }
             }
             .submit-btn {
-                background-color: #008080;
+                background-color: var(--color-highlight);
                 color: white;
                 border: none;
                 padding: 0.8rem 1.5rem;
@@ -55,7 +55,7 @@
                 justify-content: center;
 
                 &:hover {
-                    background-color: #006666;
+                    background-color: var(--color-text);
                 }
             }
         }

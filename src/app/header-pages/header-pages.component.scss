@@ -3,7 +3,7 @@
   top: 0px;
   left: 0;
   width: 100%;
-  background: #ffd900cd;
+  background: var(--color-bg-header);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: top 0.4s ease-in-out;
   z-index: 1000;
@@ -47,7 +47,9 @@
         transition: color 0.3s;
 
         &:hover {
-          color: #008080;
+          background: var(--color-hv-submenu);
+          border-radius: 11px;
+          cursor: pointer;
         }
       }
 
@@ -72,7 +74,7 @@
           text-align: left;
 
           &:hover {
-            background: rgba(0, 128, 128, 0.1);
+            background: var(--color-highlight);
           }
         }
       }
