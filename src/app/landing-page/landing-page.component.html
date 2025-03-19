@@ -1,14 +1,17 @@
 <div class="landing-page">
   <section class="hero-section">
     <div class="hero-content">
-      <h1>Welcome to <span>Car-Kara</span></h1>
+      <h1 class="special-text">Bienvenue à <span>Car-Kara</span></h1>
       <p>Votre partenaire de confiance pour des véhicules d'exception.</p>
-      <button class="cta-button">Découvrir</button>
+      <a (click)="scrollToService()"><button class="cta-button">Découvrir</button></a>
     </div>
   </section>
 
   <section class="content-section">
     <div class="grid-container">
+      <div #serviceSection class="service">
+        <h5 class="special-text">Nos services</h5>
+      </div>      
       <div *ngFor="let service of services; let i = index" class="grid-item" [ngClass]="{'text-first': i % 2 === 0}">
         <div class="text-content" *ngIf="i % 2 === 0">
           <h3>{{ service.title }}</h3>
@@ -18,8 +21,8 @@
           </ul>
         </div>
         <div class="image-content">
-          <img [src]="service.image" alt="{{ service.title }}">
-        </div>
+          <img [src]="service.image" class="image" alt="{{ service.title }}">
+        </div>        
         <div class="text-content" *ngIf="i % 2 !== 0">
           <h3>{{ service.title }}</h3>
           <p>{{ service.description }}</p>

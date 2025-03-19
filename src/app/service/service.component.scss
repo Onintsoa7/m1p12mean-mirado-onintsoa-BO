@@ -1,17 +1,23 @@
+.service-mere{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--color-bg);
+}
+.service-c{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .service-container {
-  background-color: #141a31;
+  background-color: var(--color-bg);
 }
 
 .service-text-container{
-  flex: 1;
   padding: 2rem;
-  float: left;
-  width: 40%;
+  width: fit-content;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin-left: 3.2pc;
-  margin-right: 3.2pc;
 }
 
 h2 {
@@ -22,7 +28,6 @@ h2 {
 }
 .service-title{
   text-align: center;
-  margin-bottom: 2pc;
 }
 span {
   color: #FFD700;
@@ -52,7 +57,7 @@ span {
   gap: 0.5rem;
 
   .add-btn {
-    background-color: #008080;
+    background-color: var(--color-highlight);
     color: white;
     border: none;
     padding: 0.7rem 1rem;
@@ -62,7 +67,7 @@ span {
     transition: 0.3s;
 
     &:hover {
-      background-color: #006666;
+      background-color: var(--color-text);
     }
   }
 }
@@ -84,7 +89,7 @@ span {
 }
 
 .submit-btn {
-  background-color: #008080;
+  background-color: var(--color-highlight);
   color: white;
   border: none;
   padding: 0.8rem 1.5rem;
@@ -96,7 +101,7 @@ span {
   transition: 0.3s;
 
   &:hover {
-    background-color: #006666;
+    background-color: var(--color-text);
   }
 }
 
@@ -113,6 +118,10 @@ span {
 }
 /* ========== RESPONSIVE DESIGN ========== */
 @media (max-width: 1024px) {
+  .service-c{
+    display: flex;
+      flex-direction: column;
+  }
   .service-container {
     flex-direction: column;
     height: auto;
@@ -141,6 +150,10 @@ span {
 }
 
 @media (max-width: 768px) {
+  .service-c{
+    display: flex;
+      flex-direction: column;
+  }
   .service-container {
     flex-direction: column;
     align-items: center;
@@ -174,6 +187,10 @@ span {
 }
 
 @media (max-width: 480px) {
+  .service-c{
+    display: flex;
+      flex-direction: column;
+  }
   .service-text-container {
     width: 95%;
   }

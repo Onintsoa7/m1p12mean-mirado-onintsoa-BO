@@ -1,4 +1,4 @@
-import { Component, HostListener  } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
@@ -7,10 +7,15 @@ import { FooterComponent } from '../footer/footer.component';
   selector: 'app-landing-page',
   imports: [CommonModule, HeaderComponent, FooterComponent],
   templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.scss'
+  styleUrl: './landing-page.component.scss',
 })
 export class LandingPageComponent {
- 
+  @ViewChild('serviceSection', { static: false }) serviceSection!: ElementRef;
+  scrollToService() {
+    if (this.serviceSection) {
+      this.serviceSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
   services = [
     { 
         title: "Réparation", 
@@ -20,7 +25,7 @@ export class LandingPageComponent {
             "Électronique : Diagnostic précis et réparation des systèmes électriques embarqués.",
             "Carrosserie : Redressement, peinture et rénovation pour une finition impeccable."
         ],
-        image: "assets/images/service-1.jpeg" 
+        image: "assets/images/service-1.jpg" 
     },
     { 
         title: "Entretien", 
