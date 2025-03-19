@@ -27,4 +27,7 @@ export class LoginComponent {
     console.log("here");
     this.router.navigate(['/landing-page']);
   }
+  navigateToSignup() {
+    this.router.navigate(['/signup']);
+  }
 }

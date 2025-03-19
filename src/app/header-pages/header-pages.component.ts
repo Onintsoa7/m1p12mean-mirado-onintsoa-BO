@@ -37,4 +37,11 @@ export class HeaderPagesComponent {
   navigateToLandingPage() {
     this.router.navigate(['/landing-page']);
   }
+
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
+  navigateToSignup() {
+    this.router.navigate(['/signup']);
+  }
 }
