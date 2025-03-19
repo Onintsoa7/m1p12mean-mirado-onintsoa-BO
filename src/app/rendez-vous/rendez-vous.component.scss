@@ -1,3 +1,9 @@
+.service-mere{
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    background: var(--color-bg);
+  }
 .container-r {
     min-height: 75vh;
     background-color: var(--color-bg);

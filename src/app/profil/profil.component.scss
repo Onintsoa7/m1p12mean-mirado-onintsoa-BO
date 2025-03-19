@@ -1,16 +1,24 @@
-    .container-p {
-        background-color: var(--color-bg);
-        padding-top: 1pc;
-        height: auto;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-    }
-    .profil-edit{
-        border: none;
-        margin-top: 1pc;
-        width: auto;
-        margin-right: 20px;
-        margin-left: 20px;
-    }
+.service-mere {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: var(--color-bg);
+}
+
+.container-p {
+    background-color: var(--color-bg);
+    padding-top: 1pc;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.profil-edit {
+    border: none;
+    margin-top: 1pc;
+    width: auto;
+    margin-right: 20px;
+    margin-left: 20px;
+}

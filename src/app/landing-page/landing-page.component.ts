@@ -1,4 +1,4 @@
-import { Component, HostListener, ViewEncapsulation  } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
@@ -10,7 +10,12 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrl: './landing-page.component.scss',
 })
 export class LandingPageComponent {
- 
+  @ViewChild('serviceSection', { static: false }) serviceSection!: ElementRef;
+  scrollToService() {
+    if (this.serviceSection) {
+      this.serviceSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
   services = [
     { 
         title: "Réparation", 
