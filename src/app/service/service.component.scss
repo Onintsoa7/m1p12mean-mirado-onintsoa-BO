@@ -14,8 +14,12 @@
 }
 
 .service-text-container{
+  border-radius: 20px;
+  width: 60%;
+  margin-top: 40px;
+  background: var(--lt-color-gray-800);
   padding: 2rem;
-  width: fit-content;
+  /* width: fit-content; */
   display: flex;
   flex-direction: column;
 }

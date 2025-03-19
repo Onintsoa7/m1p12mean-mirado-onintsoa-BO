@@ -11,7 +11,7 @@ export const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  // { path: 'services/:id', component: ServiceComponent },
+  { path: 'services/:id', component: ServiceComponent },
   { path: 'profiles', component: ProfilComponent },
   { path: 'rendezvous', component: RendezVousComponent }
 ];

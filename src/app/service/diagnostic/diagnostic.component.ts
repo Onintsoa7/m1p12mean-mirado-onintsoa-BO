@@ -20,6 +20,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   styleUrls: ['./diagnostic.component.scss' , '../service.component.scss']
 })
 export class DiagnosticComponent {
+  categories = [
+    "Moteur", "Démarrage et charge", "Climatisation"
+  ];
   @Input() serviceImage!: string;
   @Input() serviceTitle!: string;
   

@@ -33,7 +33,7 @@ export class HeaderComponent {
     this.isServicesMenuOpen = !this.isServicesMenuOpen;
   }
   navigateToService(service: any) {
-    this.router.navigate(['/services', service.id], { queryParams: { title: service.title}});
+    this.router.navigate(['/services', service.id]);
   }
   navigateToProfil() {
     this.router.navigate(['/profiles']);

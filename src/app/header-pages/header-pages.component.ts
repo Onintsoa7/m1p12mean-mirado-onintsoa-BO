@@ -16,16 +16,17 @@ export class HeaderPagesComponent {
   }
   constructor(private router: Router) {}
   servicesMenu = [
-      { id: 1, title: "Diagnostic"},
-      { id: 2, title: "Entretien"},
-      { id: 3, title: "Réparation"}
+    { id: 1, title: "Diagnostic"},
+    { id: 2, title: "Entretien"},
+    { id: 3, title: "Réparation"}
   ];
+
   toggleServicesMenu(event: Event) {
     event.preventDefault();
     this.isServicesMenuOpen = !this.isServicesMenuOpen;
   }
   navigateToService(service: any) {
-    this.router.navigate(['/services', service.id], { queryParams: { title: service.title}});
+    this.router.navigate(['/services', service.id]);
   }
   navigateToProfil() {
     this.router.navigate(['/profiles']);
