@@ -17,9 +17,9 @@
             <li *ngFor="let detail of service.details">{{ detail }}</li>
           </ul>
         </div>
-        <div className="image-content">
+        <div class="image-content">
           <img [src]="service.image" class="image" alt="{{ service.title }}">
-        </div>
+        </div>        
         <div class="text-content" *ngIf="i % 2 !== 0">
           <h3>{{ service.title }}</h3>
           <p>{{ service.description }}</p>

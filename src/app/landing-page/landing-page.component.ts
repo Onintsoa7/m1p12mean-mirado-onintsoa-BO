@@ -8,7 +8,6 @@ import { FooterComponent } from '../footer/footer.component';
   imports: [CommonModule, HeaderComponent, FooterComponent],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss',
-  encapsulation: ViewEncapsulation.None
 })
 export class LandingPageComponent {
  
