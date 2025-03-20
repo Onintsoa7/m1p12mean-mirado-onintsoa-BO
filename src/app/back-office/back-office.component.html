@@ -1,0 +1,35 @@
+<div class="login-container">
+    <nz-card class="login-card">
+      <h2 class="title">Se connecter</h2>
+      <form nz-form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+        
+        <!-- Email -->
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Veuillez entrer un email valide">
+            <nz-input-group nzPrefixIcon="mail">
+              <input nz-input formControlName="email" placeholder="Email">
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+  
+        <!-- Mot de passe -->
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Le mot de passe doit contenir au moins 6 caractères">
+            <nz-input-group nzPrefixIcon="lock">
+              <input nz-input formControlName="password" type="password" placeholder="Mot de passe">
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+  
+        <!-- Bouton de connexion -->
+        <button nz-button nzType="primary" nzBlock [nzLoading]="isLoading" [disabled]="loginForm.invalid">
+          Se connecter
+        </button>
+  
+        <!-- Lien d'inscription -->
+        <p class="register-link">Pas encore inscrit ? <a routerLink="/register">Créer un compte</a></p>
+  
+      </form>
+    </nz-card>
+  </div>
+  

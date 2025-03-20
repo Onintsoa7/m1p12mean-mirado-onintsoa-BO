@@ -5,6 +5,8 @@ import { SignupComponent } from './signup/signup.component';
 import { ServiceComponent } from './service/service.component';
 import { ProfilComponent } from './profil/profil.component';
 import { RendezVousComponent } from './rendez-vous/rendez-vous.component';
+import { BackOfficeComponent } from './back-office/back-office.component';
+import { MecanicienComponent } from './back-office/mecanicien/mecanicien.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent  },
@@ -13,5 +15,8 @@ export const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'services/:id', component: ServiceComponent },
   { path: 'profiles', component: ProfilComponent },
-  { path: 'rendezvous', component: RendezVousComponent }
+  { path: 'rendezvous', component: RendezVousComponent },
+  // back-office
+  { path: 'backoffice',component: BackOfficeComponent},
+  { path: 'backoffice/mecanicien',component: MecanicienComponent}
 ];

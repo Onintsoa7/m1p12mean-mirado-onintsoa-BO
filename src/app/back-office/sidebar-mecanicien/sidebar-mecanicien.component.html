@@ -1,0 +1,16 @@
+<nz-layout>
+    <nz-sider nzWidth="220px" nzTheme="dark">
+      <ul nz-menu nzMode="inline" nzTheme="dark">
+        <li nz-menu-item (click)="navigateTo('/dashboard')">
+          <i nz-icon nzType="dashboard"></i> Tableau de bord
+        </li>
+        <li nz-menu-item (click)="navigateTo('/settings')">
+          <i nz-icon nzType="setting"></i> Paramètres
+        </li>
+        <li nz-menu-item (click)="logout()">
+          <i nz-icon nzType="logout"></i> Déconnexion
+        </li>
+      </ul>
+    </nz-sider>
+  </nz-layout>
+  
