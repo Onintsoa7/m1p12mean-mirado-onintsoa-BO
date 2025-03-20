@@ -25,6 +25,9 @@ export class SidebarMecanicienComponent {
   navigateTo(route: string): void {
     this.router.navigate([route]);
   }
+  navigateToProfil() {
+    this.router.navigate(['/profiles']);
+  }
 
   logout(): void {
     console.log("Déconnexion...");

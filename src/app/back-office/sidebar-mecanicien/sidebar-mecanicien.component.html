@@ -4,8 +4,8 @@
         <li nz-menu-item (click)="navigateTo('/dashboard')">
           <i nz-icon nzType="dashboard"></i> Tableau de bord
         </li>
-        <li nz-menu-item (click)="navigateTo('/settings')">
-          <i nz-icon nzType="setting"></i> Paramètres
+        <li nz-menu-item (click)="navigateTo('/backoffice/mecanicien/rendezvous')" (keydown)="navigateTo('/rendez-vous-mecanicien')">
+          <i nz-icon nzType="file-done"></i> Rendez-vous
         </li>
         <li nz-menu-item (click)="logout()">
           <i nz-icon nzType="logout"></i> Déconnexion

@@ -7,6 +7,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { RendezVousComponent } from './rendez-vous/rendez-vous.component';
 import { BackOfficeComponent } from './back-office/back-office.component';
 import { MecanicienComponent } from './back-office/mecanicien/mecanicien.component';
+import { RendezVousComponent as MecanicienRdv } from './back-office/mecanicien/rendez-vous/rendez-vous.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent  },
@@ -18,5 +19,6 @@ export const routes: Routes = [
   { path: 'rendezvous', component: RendezVousComponent },
   // back-office
   { path: 'backoffice',component: BackOfficeComponent},
-  { path: 'backoffice/mecanicien',component: MecanicienComponent}
+  { path: 'backoffice/mecanicien',component: MecanicienComponent},
+  { path: 'backoffice/mecanicien/rendezvous',component: MecanicienRdv},
 ];

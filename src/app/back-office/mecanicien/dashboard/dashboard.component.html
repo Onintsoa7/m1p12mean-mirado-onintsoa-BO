@@ -1,0 +1,57 @@
+<div nz-row>
+    <div nz-col nzSpan="6">
+        <nz-card class="card">
+            <h3>Nombre de rendez-vous Aujourd'hui</h3>
+            <div nz-body>
+                <h1>6</h1>
+            </div>
+        </nz-card>
+    </div>
+    <div nz-col nzSpan="6">
+        <nz-card class="card">
+            <h3>En-cours</h3>
+            <div nz-body>
+                <h1>1</h1>
+            </div>
+        </nz-card>
+    </div>
+    <div nz-col nzSpan="6">
+        <nz-card class="card">
+            <h3>Traités</h3>
+            <div nz-body>
+                <h1>2</h1>
+            </div>
+        </nz-card>
+    </div>
+    <div nz-col nzSpan="6">
+        <nz-card class="card">
+            <h3>Reste</h3>
+            <div nz-body>
+                <h1>4</h1>
+            </div>
+        </nz-card>
+    </div>
+   
+</div>
+<div nz-row>
+    <div nz-col nzSpan="24">
+      <nz-card class="chart-card">
+        <h3>Statistiques des voitures traitées</h3>
+        <ngx-charts-line-chart
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="data"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="showLegend"
+          [showXAxisLabel]="showXAxisLabel"
+          [xAxisLabel]="xAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [yAxisLabel]="yAxisLabel">
+        </ngx-charts-line-chart>
+      </nz-card>
+    </div>
+  </div>
+  
+
