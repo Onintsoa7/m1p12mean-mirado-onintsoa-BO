@@ -8,6 +8,7 @@ import { RendezVousComponent } from './rendez-vous/rendez-vous.component';
 import { BackOfficeComponent } from './back-office/back-office.component';
 import { MecanicienComponent } from './back-office/mecanicien/mecanicien.component';
 import { RendezVousComponent as MecanicienRdv } from './back-office/mecanicien/rendez-vous/rendez-vous.component';
+import { DashboardComponent } from './back-office/mecanicien/dashboard/dashboard.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent  },
@@ -18,7 +19,13 @@ export const routes: Routes = [
   { path: 'profiles', component: ProfilComponent },
   { path: 'rendezvous', component: RendezVousComponent },
   // back-office
-  { path: 'backoffice',component: BackOfficeComponent},
-  { path: 'backoffice/mecanicien',component: MecanicienComponent},
-  { path: 'backoffice/mecanicien/rendezvous',component: MecanicienRdv},
+  { path: 'backoffice', component: BackOfficeComponent },
+  {
+    path: 'backoffice/mecanicien',
+    component: MecanicienComponent,
+    children: [
+      { path: 'rendezvous', component: MecanicienRdv },
+      { path: '', component: DashboardComponent }
+    ]
+  }
 ];

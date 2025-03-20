@@ -33,4 +33,19 @@ export class SidebarMecanicienComponent {
     console.log("Déconnexion...");
     this.router.navigate(['/login']); 
   }
+
+  public sideBarContents: any = [
+  {
+    id: 1,
+    title: 'Dashboard',
+    icon: 'dashboard',
+    route: '/backoffice/mecanicien'
+  },
+  {
+    id: 2,
+    title: 'Rendez-vous',
+    icon: 'file-done',
+    route: '/backoffice/mecanicien/rendezvous'
+  }
+  ];
 }

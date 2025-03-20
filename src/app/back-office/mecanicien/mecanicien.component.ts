@@ -3,8 +3,7 @@ import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { SidebarMecanicienComponent } from "../sidebar-mecanicien/sidebar-mecanicien.component";
-import { DashboardComponent } from "./dashboard/dashboard.component";
-
+import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-mecanicien',
   imports: [
@@ -12,7 +11,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
     HeaderComponent,
     FooterComponent,
     SidebarMecanicienComponent,
-    DashboardComponent,
+    RouterOutlet
 ],
   templateUrl: './mecanicien.component.html',
   styleUrl: './mecanicien.component.scss'
