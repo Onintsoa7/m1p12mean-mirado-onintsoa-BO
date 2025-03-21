@@ -1,0 +1,63 @@
+<div nz-row>
+    <div nz-col nzSpan="6">
+        <nz-card class="card">
+            <h3>Nombre de rendez-vous Aujourd'hui</h3>
+            <div nz-body>
+                <h1>6</h1>
+            </div>
+        </nz-card>
+    </div>
+    <div nz-col nzSpan="6">
+        <nz-card class="card">
+            <h3>Nombre de Mécano dispo</h3>
+            <div nz-body>
+                <h1>1</h1>
+            </div>
+        </nz-card>
+    </div>
+    <div nz-col nzSpan="6">
+        <nz-card class="card">
+            <h3>Rendez vous traité</h3>
+            <div nz-body>
+                <h1>2</h1>
+            </div>
+        </nz-card>
+    </div>
+    <div nz-col nzSpan="6">
+        <nz-card class="card">
+            <h3>Reste</h3>
+            <div nz-body>
+                <h1>4</h1>
+            </div>
+        </nz-card>
+    </div>
+</div>
+
+<div nz-row>
+    <div nz-col nzSpan="24">
+        <div class="chart-container">
+            <h2>Chiffre d'affaires mensuel</h2>
+          
+            <!-- Sélecteur de mois -->
+            <label for="monthSelect">Sélectionnez un mois :</label>
+            <select id="monthSelect" [(ngModel)]="selectedMonth">
+              @for (month of months; track month) {
+                <option [value]="month.value">{{ month.name }}</option>
+              }
+            </select>
+          
+            <!-- Graphique ngx-charts -->
+            <ngx-charts-line-chart
+              [view]="view"
+              [scheme]="'cool'"
+              [results]="filteredData"
+              [gradient]="gradient"
+              [xAxis]="showXAxis"
+              [yAxis]="showYAxis"
+              [legend]="showLegend"
+              [xAxisLabel]="xAxisLabel"
+              [yAxisLabel]="yAxisLabel">
+            </ngx-charts-line-chart>
+          </div>
+    </div>
+</div>

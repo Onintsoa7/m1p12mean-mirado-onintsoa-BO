@@ -10,7 +10,6 @@ import { fr_FR, provideNzI18n } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import fr from '@angular/common/locales/fr';
 import { FormsModule } from '@angular/forms';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 registerLocaleData(fr);
 
@@ -35,7 +34,6 @@ bootstrapApplication(AppComponent, {
     ), 
     provideAnimations(),
     provideNzI18n(fr_FR), 
-    provideAnimationsAsync(), 
     provideHttpClient()
   ]
 });
