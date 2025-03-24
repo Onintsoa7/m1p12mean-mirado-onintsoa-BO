@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzGridModule } from 'ng-zorro-antd/grid';
-import { NgxChartsModule, ScaleType, Color } from '@swimlane/ngx-charts';
+import { NgxChartsModule} from '@swimlane/ngx-charts';
 import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-dashboard',

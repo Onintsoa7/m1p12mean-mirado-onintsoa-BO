@@ -56,3 +56,13 @@ h1, h2, h3, p, button {
     background-color: var(--color-accent);
     color: var(--color-text);
 }
+.mdc-text-field__input {
+    color: whitesmoke !important;
+}
+.mat-mdc-select{
+    color: whitesmoke !important;
+}
+.mdc-floating-label{
+    font-size: 4pt;
+    color: var(--color-highlight) !important;
+}

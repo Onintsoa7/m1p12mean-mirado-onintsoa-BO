@@ -5,6 +5,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    width: 97%;
     
 }
 
@@ -80,12 +81,12 @@
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 943px) {
     .details-container {
         flex-direction: column;
         padding: 10px;
         margin: 0;
-        width: 80%;
+        width: 95%;
     }
 
     .profil-car,
@@ -100,7 +101,6 @@
     }
 
     .add-button {
-        width: 100%; 
         text-align: center;
     }
 }
