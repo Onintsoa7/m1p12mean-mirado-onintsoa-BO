@@ -35,29 +35,24 @@
 
 <div nz-row>
     <div nz-col nzSpan="24">
-        <div class="chart-container">
-            <h2>Chiffre d'affaires mensuel</h2>
-          
-            <!-- Sélecteur de mois -->
-            <label for="monthSelect">Sélectionnez un mois :</label>
-            <select id="monthSelect" [(ngModel)]="selectedMonth">
-              @for (month of months; track month) {
-                <option [value]="month.value">{{ month.name }}</option>
-              }
-            </select>
-          
-            <!-- Graphique ngx-charts -->
-            <ngx-charts-line-chart
-              [view]="view"
-              [scheme]="'cool'"
-              [results]="filteredData"
-              [gradient]="gradient"
-              [xAxis]="showXAxis"
-              [yAxis]="showYAxis"
-              [legend]="showLegend"
-              [xAxisLabel]="xAxisLabel"
-              [yAxisLabel]="yAxisLabel">
-            </ngx-charts-line-chart>
-          </div>
+      <div class="chart-container">
+        <h2>Chiffre d'affaires mensuel</h2>
+  
+        <!-- Sélecteur de mois -->
+        <label for="monthSelect">Sélectionnez un mois :</label>
+        <select id="monthSelect" [(ngModel)]="selectedMonth">
+          @for (month of months; track month) {
+            <option [value]="month.value">{{ month.name }}</option>
+          }
+        </select>
+  
+        <!-- Graphique ECharts -->
+        <echarts 
+          [options]="chartOptions" 
+          class="demo-chart" 
+          style="width: 100%; height: 400px;"
+          [autoResize]="true">
+        </echarts>
+      </div>
     </div>
-</div>
+  </div>

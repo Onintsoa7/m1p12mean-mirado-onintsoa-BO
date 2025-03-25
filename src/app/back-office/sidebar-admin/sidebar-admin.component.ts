@@ -37,14 +37,14 @@ export class SidebarAdminComponent {
     {
       id: 2,
       title: 'Mecanicien',
-      icon: 'file-done',
-      route: '/backoffice/mecanicien/rendezvous'
+      icon: 'user',
+      route: '/backoffice/admin/mecanicien'
     },
     {
       id: 2,
-      title: 'Clients',
+      title: 'Rendez-Vous',
       icon: 'file-done',
-      route: '/backoffice/mecanicien/rendezvous'
+      route: '/backoffice/admin/rendezvous'
     }
   ];
 }

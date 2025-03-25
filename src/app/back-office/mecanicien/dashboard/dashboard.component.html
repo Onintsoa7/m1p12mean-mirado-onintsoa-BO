@@ -36,21 +36,15 @@
     <div nz-col nzSpan="24">
       <nz-card class="chart-card">
         <h3>Statistiques des voitures traitées</h3>
-        <ngx-charts-line-chart
-          [view]="view"
-          [scheme]="colorScheme"
-          [results]="data"
-          [gradient]="gradient"
-          [xAxis]="showXAxis"
-          [yAxis]="showYAxis"
-          [legend]="showLegend"
-          [showXAxisLabel]="showXAxisLabel"
-          [xAxisLabel]="xAxisLabel"
-          [showYAxisLabel]="showYAxisLabel"
-          [yAxisLabel]="yAxisLabel">
-        </ngx-charts-line-chart>
+        <echarts 
+          [options]="chartOptions" 
+          class="demo-chart" 
+          style="width: 100%; height: 400px;" 
+          [autoResize]="true">
+        </echarts>
       </nz-card>
     </div>
   </div>
+  
   
 

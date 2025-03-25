@@ -2,15 +2,17 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzGridModule } from 'ng-zorro-antd/grid';
-import { NgxChartsModule} from '@swimlane/ngx-charts';
 import { FormsModule } from '@angular/forms';
+import { NgxEchartsModule } from 'ngx-echarts';
+
 @Component({
   selector: 'app-dashboard',
+  standalone: true,
   imports: [
     CommonModule,
     NzGridModule,
     NzCardModule,
-    NgxChartsModule,
+    NgxEchartsModule,
     FormsModule,
   ],
   templateUrl: './dashboard.component.html',
@@ -32,50 +34,38 @@ export class DashboardComponent {
     { name: 'Décembre', value: '12' }
   ];
 
-  // Mois sélectionné (par défaut janvier)
   selectedMonth: string = '01';
 
-  // Données de chiffre d'affaires pour chaque mois
-  salesData: { [key: string]: { name: string; series: { name: string; value: number }[] }[] } = {
-    '01': [
-      {
-        name: 'Chiffre d\'affaires',
-        series: [
-          { name: 'Semaine 1', value: 12000 },
-          { name: 'Semaine 2', value: 15000 },
-          { name: 'Semaine 3', value: 17000 },
-          { name: 'Semaine 4', value: 20000 }
-        ]
-      }
-    ],
-    '02': [
-      {
-        name: 'Chiffre d\'affaires',
-        series: [
-          { name: 'Semaine 1', value: 10000 },
-          { name: 'Semaine 2', value: 13000 },
-          { name: 'Semaine 3', value: 16000 },
-          { name: 'Semaine 4', value: 19000 }
-        ]
-      }
-    ],
-    // Ajoute d'autres mois ici...
+  salesData: { [key: string]: number[] } = {
+    '01': [12000, 15000, 17000, 20000],
+    '02': [10000, 13000, 16000, 19000]
+    // Ajoute plus de mois ici si besoin
   };
 
-  // Configuration du graphique
-  view: [number, number] = [700, 400];
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = false;
-  showXAxisLabel = true;
-  xAxisLabel = 'Semaine';
-  showYAxisLabel = true;
-  yAxisLabel = 'Chiffre d\'affaires (en €)';
-
-  // Getter pour récupérer les données du mois sélectionné
-  get filteredData() {
-    return this.salesData[this.selectedMonth] || [];
+  get chartOptions() {
+    const data = this.salesData[this.selectedMonth] || [];
+    return {
+      title: {
+        text: `Chiffre d'affaires - Mois sélectionné`
+      },
+      tooltip: {
+        trigger: 'axis'
+      },
+      xAxis: {
+        type: 'category',
+        data: ['Semaine 1', 'Semaine 2', 'Semaine 3', 'Semaine 4']
+      },
+      yAxis: {
+        type: 'value',
+        name: 'Chiffre d\'affaires (€)'
+      },
+      series: [
+        {
+          data: data,
+          type: 'line',
+          smooth: true
+        }
+      ]
+    };
   }
-
 }
