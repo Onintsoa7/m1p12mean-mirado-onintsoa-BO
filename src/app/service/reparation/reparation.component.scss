@@ -1,0 +1,15 @@
+.form-group mat-form-field {
+    ::ng-deep input{
+        border: none;
+    }
+}
+.form-row{
+    margin-bottom: 12px;
+}
+.selected-pieces mat-chip-list{
+    ::ng-deep mat-chip {
+        margin: 4px;
+    background-color: var(--color-highlight);
+    border: var(--color-highlight) 1px;
+    }
+}

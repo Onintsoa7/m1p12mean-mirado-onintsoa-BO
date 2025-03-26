@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,9 +8,19 @@ import { CommonModule } from '@angular/common';
   styleUrl: './profil-data.component.scss'
 })
 export class ProfilDataComponent {
+
+  @Output() carFormClicked = new EventEmitter<void>();
+  @Output() activeFactureClicked = new EventEmitter<void>();
+  onCarFormClick() {
+    this.carFormClicked.emit();
+  }
+  onFactureClick() {
+    console.log("ato");
+    this.activeFactureClicked.emit();
+  }
   visits = [
-    { car: 'Mazda', date: '02-05-2025', service: 'Réparation' },
-    { car: 'Mercedes', date: '02-05-2025', service: 'Entretien' }
+    { id:'0',car: 'Mazda', date: '02-05-2025', service: 'Réparation' },
+    { id:'1',car: 'Mercedes', date: '02-05-2025', service: 'Entretien' }
   ];
   cars = [
     { brand: 'Mazda', year: 2019, number: '1905TAE' },

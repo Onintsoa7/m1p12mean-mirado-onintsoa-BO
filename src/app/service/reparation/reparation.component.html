@@ -1,20 +1,41 @@
 <div class="service-c">
   <div class="service-text-container">
-    <h2>Passer au garage pour <span>{{serviceTitle}}</span></h2>
+    <h2>Passer au garage pour <span>Une réparation</span></h2>
     <form>
+
+      <!-- Dropdown pour choisir la catégorie -->
       <div class="form-group">
-        <label for="gravite">Gravité du problème :</label>
-        <select id="gravite">
-          <option>Mineur</option>
-          <option>Moyen</option>
-          <option>Grave</option>
-        </select>
+        <mat-form-field>
+          <mat-label>Catégorie de la pièce :</mat-label>
+          <mat-select [(value)]="selectedCategory" (selectionChange)="updateFilteredPieces()">
+            <mat-option *ngFor="let category of piecesReparables" [value]="category.category">
+              {{ category.category }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
 
+      <!-- Champ d'auto-complétion pour sélectionner les pièces -->
       <div class="form-group">
-        <label for="piecesChangees">Pièces déjà changées ? (optionnel) :</label>
-        <input type="text" id="piecesChangees"
-          placeholder="Exemple : Courroie de distribution, batterie...">
+        <mat-form-field >
+          <mat-label>Pièce à réparer :</mat-label>
+          <input type="text" class="autocomplete" matInput [formControl]="pieceControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addPiece($event.option.viewValue)">
+            <mat-option *ngFor="let piece of filteredOptions | async" [value]="piece">
+              {{ piece }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+      <!-- Liste des pièces sélectionnées -->
+      <div class="selected-pieces">
+        <mat-chip-list>
+          <mat-chip *ngFor="let piece of selectedPieces" (removed)="removePiece(piece)">
+            {{ piece }}
+            <mat-icon matChipRemove>close</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
       </div>
 
       <div class="form-row">
@@ -28,12 +49,10 @@
           <input type="time" id="heure">
         </div>
       </div>
-
       <p class="note">*Peut être modifié selon la disponibilité des
         mécaniciens</p>
 
       <button class="submit-btn">Demander un rendez-vous</button>
     </form>
   </div>
-
 </div>

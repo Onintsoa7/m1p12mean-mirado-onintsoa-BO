@@ -1,0 +1,124 @@
+.container {
+    display: flex;
+    flex-direction: row;
+
+    gap: 10px;
+
+    .card-container {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        height: -webkit-fill-available;
+
+        .events {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .events .ant-badge-status {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            text-overflow: ellipsis;
+            font-size: 12px;
+        }
+
+        .ant-picker-calendar {
+            overflow-y: scroll;
+            height: 650px;
+
+        }
+    }
+
+    .card-right {
+        width: 50%;
+        height: -webkit-fill-available;
+
+        .container-rendez-vous {
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            padding: 10px;
+            height: 650px;
+
+            .rendez-vous {
+                cursor: pointer;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #f8f9fa;
+                padding: 16px 24px;
+                border-radius: 12px;
+                margin-bottom: 16px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                transition: box-shadow 0.3s ease;
+
+                &:hover {
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                }
+
+                .data {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+
+                    h5 {
+                        margin: 0;
+                        font-size: 14px;
+
+                        &:first-child {
+                            font-weight: 600;
+                            color: #333;
+                        }
+
+                        &:nth-child(2) {
+                            font-weight: 500;
+                            color: #000;
+                        }
+
+                        &:nth-child(n+3) {
+                            color: #555;
+                            font-style: italic;
+                        }
+                    }
+                }
+
+                .status {
+                    min-width: 120px;
+                    text-align: right;
+
+                    h5 {
+                        margin: 0;
+                        font-size: 14px;
+                        font-weight: bold;
+                        color: #389e0d;
+
+                        &.non-lue {
+                            color: #fa8c16;
+                        }
+
+                        &.annulé {
+                            color: #ff4d4f;
+                        }
+                    }
+                }
+            }
+            .forms-rendez-vous {
+                display: flex;
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+                background: #f8f9fa;
+                margin-bottom: 20px;
+                .row{
+                    display: flex;
+                    width: 100%;
+                    flex-direction: row;
+                }
+            }
+
+        }
+    }
+}

@@ -15,21 +15,13 @@ import { CommonModule } from '@angular/common';
 })
 export class ServiceComponent {
   serviceId: string | null = null;
-  serviceTitle: string | null = null;
-  serviceImage: string = "assets/images/service-1.jpg";
   constructor(private route: ActivatedRoute) {}
 
   getServicesDetails() {
     this.route.paramMap.subscribe(params => {
       this.serviceId = params.get('id');
-    });
-
-    this.route.queryParamMap.subscribe(params => {
-      this.serviceTitle = params.get('title');
-      this.serviceImage;
-    });
+    });   
   }
-
   ngOnInit() {
     this.getServicesDetails();
   }
