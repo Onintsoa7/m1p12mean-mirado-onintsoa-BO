@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -6,8 +6,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { TranslateModule } from '@ngx-translate/core';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { SigninService } from '../services/signin.service';
 import { User, UserLogin } from '../core/models/user';
+import { SigninService } from '../core/services/signin.service';
+import { AuthService } from '../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -24,12 +25,14 @@ import { User, UserLogin } from '../core/models/user';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+  @Output() loginOk = new EventEmitter<void>();
   loginForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private signinService: SigninService
+    private signinService: SigninService,
+    private authService : AuthService
   ) {
     this.loginForm = this.fb.group({
       adresseMail: ['mirado@mirado.com', [Validators.required, Validators.email]],
@@ -39,26 +42,25 @@ export class LoginComponent {
 
   login() {
     if (this.loginForm.invalid) return;
+
     const userLogin: UserLogin = {
       adresseMail: this.loginForm.value.adresseMail,
       password: this.loginForm.value.password
     };
 
     this.signinService.loginUser(userLogin).subscribe({
-      next: (response) => {
-        console.log('Login success:', response);
-
-        // Stocker le token et l'utilisateur dans localStorage
-        localStorage.setItem('token', response.body.token);
-        localStorage.setItem('user', JSON.stringify(response.body.user));
-
+      next: () => {
+        const user = this.authService.getUserFromToken();
+        console.log('Utilisateur connecté :', user);
+        this.loginOk.emit();
         this.router.navigate(['/landing-page']);
       },
       error: (err) => {
-        console.error('Login failed:', err);
+        console.error('Échec de la connexion :', err);
       }
     });
   }
+
   navigateToSignup() {
     this.router.navigate(['/signup']);
   }

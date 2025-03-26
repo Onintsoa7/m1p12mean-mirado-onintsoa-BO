@@ -20,8 +20,13 @@
       </li>
       <li><a (click)="navigateToRendezVous()">Vos Rendez-vous</a></li>
       <li><a (click)="navigateToProfil()">Votre Profil</a></li>
-      <button class="connection"><a (click)="navigateToLogin()"> Se connecter</a></button>
-      <button class="inscription"><a (click)="navigateToSignup()"> S'inscrire</a></button>
+      <div class="btn-login" (loginOk)="isLogin()" *ngIf="hasConnectedUSer===false">
+        <button class="connection"  ><a (click)="navigateToLogin()"> Se connecter</a></button>
+        <button class="inscription" ><a (click)="navigateToSignup()"> S'inscrire</a></button>
+      </div>
+      <div class="btn-login" *ngIf="hasConnectedUSer===true">
+        <button class="deconnect" ><a (click)="deconnexion()"> Se déconnecter</a></button>
+      </div>
     </ul>
   </nav>
 </header>

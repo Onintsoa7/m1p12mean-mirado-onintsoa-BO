@@ -7,6 +7,6 @@ export class Constants{
 
   public static PIECE_API = this.BASE_URL + 'pieces';
   public static SERVICE_API = this.BASE_URL + 'services';
-  public static TYPE_SERVICE_API = this.BASE_URL + 'type-service-routes';
+  public static TYPE_SERVICE_API = this.BASE_URL + 'type-services';
   public static VOITURE_API = this.BASE_URL + 'voitures';
 }
