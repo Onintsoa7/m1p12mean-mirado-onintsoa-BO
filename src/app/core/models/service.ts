@@ -15,12 +15,14 @@ export interface Service {
   image?: string;
   typeEntretien?: string;
   pieceAreparer?: string;
-  dateDernièreEntretien?: Date;
+  date?: Date;
+  dateDerniereEntretien?: Date;
   dateSuggestionVisite?: Date;
   heureSuggestionVisite?: string;
   dateFixeVisite?: Date;
   heureFixeVisite?: string;
   montantFinal?: number;
+  duree?: number;
   createdAt?: Date;
   updatedAt?: Date;
 }

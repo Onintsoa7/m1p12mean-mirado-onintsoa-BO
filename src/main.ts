@@ -1,9 +1,9 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { importProvidersFrom } from '@angular/core';
-import { HttpClientModule, HttpClient, provideHttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { provideAnimations } from '@angular/platform-browser/animations'; // ✅ Use this instead of Noop
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { AppComponent } from './app/app.component';
 import { appConfig } from './app/app.config';
 import { fr_FR, provideNzI18n } from 'ng-zorro-antd/i18n';
@@ -11,7 +11,7 @@ import { registerLocaleData } from '@angular/common';
 import fr from '@angular/common/locales/fr';
 import { FormsModule } from '@angular/forms';
 import { NgxEchartsModule } from 'ngx-echarts';
-
+import { AuthInterceptor } from './app/core/interceptors/auth.interceptor';
 registerLocaleData(fr);
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -37,6 +37,9 @@ bootstrapApplication(AppComponent, {
       FormsModule
     ),
     provideNzI18n(fr_FR),
-    provideHttpClient()
+    provideHttpClient(),
+    provideHttpClient(
+      withInterceptors([AuthInterceptor])
+    )
   ]
 });

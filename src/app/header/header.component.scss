@@ -130,6 +130,25 @@
     }
   }
 
+  .deconnect{
+    width: 120px;
+    border-radius: 25px;
+    height: 34px;
+    align-self: center;
+    justify-self: center;
+    color: var(--color-highlight);
+    border: var(--color-highlight) 3px solid;
+    background: var(--color-highlight);
+    transition: 0.3s;
+    &:hover{
+      transition: 0.5s;
+      background: none;
+      color: var(--color-text);
+    }
+    a{
+      color: var(--color-text);
+    }
+  }
   @media (max-width: 768px) {
     .menu-toggle {
       display: block;
