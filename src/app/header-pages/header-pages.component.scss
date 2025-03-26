@@ -8,7 +8,15 @@
   transition: top 0.4s ease-in-out;
   color: var(--color-text);
   z-index: 1000;
-
+  display: flex;
+  justify-content: center;
+  .nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    padding: 1rem 2rem;
+  }
   .logo{
     display: flex;
     justify-content: start;
@@ -19,14 +27,7 @@
   &.visible {
     top: 0;
   }
-  .nav {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+
 
   .menu-toggle {
     display: none;
@@ -39,6 +40,7 @@
   ul {
     list-style: none;
     display: flex;
+    align-items: center;
     gap: 2rem;
 
     li {
@@ -92,7 +94,62 @@
       }
     }
   }
-
+  .connection{
+    background: none;
+    border-radius: 25px;
+    height: 34px;
+    align-self: center;
+    justify-self: center;
+    color: var(--color-highlight);
+    border: var(--color-highlight) 3px solid;
+    transition: 0.3s;
+    &:hover{
+      transition: 0.5s;
+      background: var(--color-highlight);
+      color: var(--color-text);
+    }
+    a{
+      color: var(--color-text);
+    }
+  }
+  .inscription{
+    width: 100px;
+    border-radius: 25px;
+    height: 34px;
+    align-self: center;
+    justify-self: center;
+    color: var(--color-highlight);
+    border: var(--color-highlight) 3px solid;
+    background: var(--color-highlight);
+    transition: 0.3s;
+    &:hover{
+      transition: 0.5s;
+      background: none;
+      color: var(--color-text);
+    }
+    a{
+      color: var(--color-text);
+    }
+  }
+  .deconnect{
+    width: 120px;
+    border-radius: 25px;
+    height: 34px;
+    align-self: center;
+    justify-self: center;
+    color: var(--color-highlight);
+    border: var(--color-highlight) 3px solid;
+    background: var(--color-highlight);
+    transition: 0.3s;
+    &:hover{
+      transition: 0.5s;
+      background: none;
+      color: var(--color-text);
+    }
+    a{
+      color: var(--color-text);
+    }
+  }
   // ✅ Responsive pour mobile
   @media (max-width: 768px) {
     .menu-toggle {
@@ -104,7 +161,7 @@
       top: 60px;
       left: 0;
       width: 100%;
-      background: white;
+      background: var(--color-bg);
       flex-direction: column;
       align-items: center;
       padding: 1rem 0;
@@ -120,6 +177,7 @@
     .submenu {
       position: relative;
       width: 100%;
+      background-color: var(--color-bg);
       box-shadow: none;
       z-index: 9000;
     }

@@ -20,6 +20,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   styleUrls: ['./entretien.component.scss', '../service.component.scss']
 })
 export class EntretienComponent implements OnInit, OnChanges {
+  entretienTypes = [
+    { id: 1, name: "Vidange" },
+    { id: 2, name: "Pneus" },
+    { id: 3, name: "Freins" },
+    { id: 4, name: "Climatisation" },
+    { id: 5, name: "Autre" }
+  ];
+  
   ngOnChanges(changes: SimpleChanges) {
     if (changes['serviceImage']) {
       console.log('Service Image received in EntretienComponent:', this.serviceImage);

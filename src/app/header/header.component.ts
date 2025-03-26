@@ -1,17 +1,26 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { SigninService } from '../core/services/signin.service';
 
 @Component({
   selector: 'app-header',
   imports: [CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   isHeaderVisible = false;
   isMenuOpen = false;
   isServicesMenuOpen = false;
+  hasConnectedUSer = false;
+
+  ngOnInit() {
+    // const storedUser = this.signin.getConnectedUser();
+    // if (storedUser) {
+    //   this.hasConnectedUSer = true;
+    // }
+  }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -26,14 +35,16 @@ export class HeaderComponent {
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+              private signin : SigninService
+  ) {}
 
   toggleServicesMenu(event: Event) {
     event.preventDefault();
     this.isServicesMenuOpen = !this.isServicesMenuOpen;
   }
   navigateToService(service: any) {
-    this.router.navigate(['/services', service.id], { queryParams: { title: service.title}});
+    this.router.navigate(['/services', service.id]);
   }
   navigateToProfil() {
     this.router.navigate(['/profiles']);
@@ -42,6 +53,23 @@ export class HeaderComponent {
     this.router.navigate(['/rendezvous']);
   }
   navigateToLandingPage() {
+    this.router.navigate(['/landing-page']);
+  }
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  navigateToSignup() {
+    this.router.navigate(['/signup']);
+  }
+  isLogin(){
+    console.log('isLogin');
+    this.hasConnectedUSer = true;
+  }
+
+  deconnexion(){
+    this.signin.deconnexion();
+    this.hasConnectedUSer = false;
     this.router.navigate(['/landing-page']);
   }
 }

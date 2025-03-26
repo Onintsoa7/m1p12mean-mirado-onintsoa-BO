@@ -2,7 +2,7 @@
     <div class="profil-car">
         <div class="profil-voiture-header">
             <h3>Vos voitures</h3>
-            <button class="add-button">Ajouter</button>
+            <button class="add-button" (click)="onCarFormClick()">Ajouter</button>
         </div>
         <table>
             <tr>
@@ -30,7 +30,7 @@
                 <td>{{ visit.car }}</td>
                 <td>{{ visit.date }}</td>
                 <td>{{ visit.service }}</td>
-                <td><a href="#">Voir détails</a></td>
+                <td><a (click)="onFactureClick()">Voir détails</a></td>
             </tr>
         </table>
     </div>

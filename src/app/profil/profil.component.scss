@@ -22,3 +22,26 @@
     margin-right: 20px;
     margin-left: 20px;
 }
+
+app-profil-container{
+    width: 100%;
+}
+
+app-profil-data{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+app-profil-car{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+app-profil-edit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

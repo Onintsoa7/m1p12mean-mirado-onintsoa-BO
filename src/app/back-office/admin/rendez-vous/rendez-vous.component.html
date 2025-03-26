@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="card-container">
+        <div class="titre">
+            <h3>Rendez-vous</h3>
+            <hr>
+        </div>
+
+        <nz-calendar [(nzValue)]="selectedDateObject" (nzSelectChange)="onSelectChange($event)">
+            <ul *nzDateCell="let date" class="events">
+                @for (rdv of getRendezVousDuJour(date); track rdv) {
+                <li>
+                    <nz-badge nzStatus="processing"
+                        [nzText]="rdv.nom + ' | ' + rdv.type_service + ' | ' + rdv.voiture + ' | ' + rdv.heure"></nz-badge>
+                </li>
+                }
+            </ul>
+        </nz-calendar>
+    </div>
+
+    <div class="card-right">
+        <div class="titre">
+            <h3>Liste Rendez-vous</h3>
+            <hr>
+        </div>
+
+        <div class="container-rendez-vous">
+            @for (rdv of getRendezVousSelected(); let i = $index; track i) {
+            <div class="rendez-vous" (click)="openForm(i, rdv)">
+                <div class="data">
+                    <h5>{{ rdv.dateSuggestionVisite }} à {{ rdv.heure }}</h5>
+                    <h5>{{ rdv.nom }} {{ rdv.voiture }}</h5>
+                    <h5>Type de service: {{ rdv.type_service }}</h5>
+                    <h5>Partie: {{ rdv.partie }}</h5>
+                    <h5>Pièce: {{ rdv.piece }}</h5>
+                </div>
+                <div class="status">
+                    <h5 [ngClass]="{
+                      'non-lue': rdv.status === 'Non Lue',
+                      'annulé': rdv.status === 'Annulé'
+                    }">
+                        {{ rdv.status }}
+                    </h5>
+                </div>
+            </div>
+
+            <!-- Formulaire visible si clic sur un RDV non validé -->
+            <div class="forms-rendez-vous" *ngIf="selectedRDVIndex === i">
+                <form [formGroup]="formRendezVous" (ngSubmit)="submitForm()" nz-form nzLayout="vertical">
+
+                    <nz-form-item>
+                        <nz-form-label>Mécanicien</nz-form-label>
+                        <nz-form-control>
+                            <nz-select formControlName="mecanicien" nzPlaceHolder="Choisir un mécanicien">
+                                <nz-option *ngFor="let m of mecaniciens" [nzValue]="m" [nzLabel]="m"></nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <div class="row">
+                        <nz-form-item>
+                            <nz-form-label>Date</nz-form-label>
+                            <nz-form-control>
+                                <nz-date-picker formControlName="date" nzFormat="yyyy-MM-dd"></nz-date-picker>
+                            </nz-form-control>
+                        </nz-form-item>
+
+                        <nz-form-item>
+                            <nz-form-label>Heure</nz-form-label>
+                            <nz-form-control>
+                                <nz-time-picker formControlName="heure" nzFormat="HH:mm"></nz-time-picker>
+                            </nz-form-control>
+                        </nz-form-item>
+
+                        <nz-form-item>
+                            <nz-form-label>Estimation Réparation</nz-form-label>
+                            <nz-form-control>
+                                <nz-time-picker formControlName="estimationReparation" nzFormat="HH:mm"></nz-time-picker>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <button nz-button nzType="primary" [disabled]="formRendezVous.invalid">Valider</button>
+
+                </form>
+            </div>
+            }
+        </div>
+
+    </div>
+</div>
