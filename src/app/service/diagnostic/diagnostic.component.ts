@@ -67,20 +67,24 @@ export class DiagnosticComponent implements AfterViewInit, OnInit {
     private router : Router
   ) {}
 
+  initForm(){
+    this.diagnosticForm = this.fb.group({
+      typeService: [null, Validators.required],
+      voiture:[null, Validators.required],
+      description: [''],
+      dateDerniereEntretien:[null],
+      visibleSymptom: [null, Validators.required],
+      dateSuggestionVisite: ['', Validators.required],
+      heureSuggestionVisite: ['', Validators.required]
+    });
+  }
+
   ngOnInit(): void {
     const storedUser = sessionStorage.getItem('connected_user');
     if (storedUser) {
       const user = JSON.parse(storedUser);
     }
-    this.diagnosticForm = this.fb.group({
-      typeService: [null, Validators.required],
-      voiture:[null, Validators.required],
-      description: [''],
-      visibleSymptom: [null, Validators.required],
-      dateSuggestionVisite: ['', Validators.required],
-      heureSuggestionVisite: ['', Validators.required]
-    });
-
+    this.initForm();
     this.getDiagnosticCategories();
     this.getListVoitures();
   }
@@ -97,17 +101,14 @@ export class DiagnosticComponent implements AfterViewInit, OnInit {
   }
   onVoitureChange(event: any): void {
     const selectedVoiture = event.value;
-    console.log('Voiture sélectionnée :', selectedVoiture);
   }
   onTypeServiceChange(event: any): void {
     const selectedTypeService = event.value;
-    console.log('Type Service sélectionnée :', selectedTypeService);
   }
   getListVoitures(): void {
     this.serviceService.getVoitureById(this.id).subscribe({
       next: (data) => {
         this.mesVoitures = Array.isArray(data) ? data : [data];
-        console.log(this.mesVoitures," ID EH");
       },
       error: (err) => {
         console.error('Erreur lors du chargement des voitures', err);
@@ -129,6 +130,7 @@ export class DiagnosticComponent implements AfterViewInit, OnInit {
       user: this.id,
       voiture: formValue.voiture,
       typeService: formValue.typeService,
+      dateDerniereEntretien: formValue.dateDerniereEntretien,
       description: formValue.description,
       visibleSymptom: formValue.visibleSymptom,
       dateSuggestionVisite: new Date(formValue.dateSuggestionVisite),
