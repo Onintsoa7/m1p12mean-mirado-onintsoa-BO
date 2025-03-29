@@ -29,6 +29,9 @@ import { AuthService } from '../../core/services/auth.service';
 import { Voiture } from '../../core/models/voiture';
 import { SigninService } from '../../core/services/signin.service';
 import { identity } from 'rxjs';
+import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -41,7 +44,9 @@ import { identity } from 'rxjs';
     MatButtonModule,
     MatRadioModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   templateUrl: './diagnostic.component.html',
   styleUrls: ['./diagnostic.component.scss', '../service.component.scss']
@@ -51,13 +56,15 @@ export class DiagnosticComponent implements AfterViewInit, OnInit {
   mesVoitures: Voiture[] = [];
   diagnosticForm!: FormGroup;
   storedUser = sessionStorage.getItem('connected_user');
+  id: string = this.storedUser ? JSON.parse(this.storedUser)._id : '';
   @Input() serviceImage!: string;
   @Input() serviceTitle!: string;
 
   constructor(
     private serviceService: ServiceService,
     private fb: FormBuilder,
-        private signin : SigninService
+    private signin : SigninService,
+    private router : Router
   ) {}
 
   ngOnInit(): void {
@@ -67,11 +74,11 @@ export class DiagnosticComponent implements AfterViewInit, OnInit {
     }
     this.diagnosticForm = this.fb.group({
       typeService: [null, Validators.required],
+      voiture:[null, Validators.required],
       description: [''],
-      visibleSymptom: ['false'],
-      image: [null],
-      dateFixeVisite: ['', Validators.required],
-      heureFixeVisite: ['', Validators.required]
+      visibleSymptom: [null, Validators.required],
+      dateSuggestionVisite: ['', Validators.required],
+      heureSuggestionVisite: ['', Validators.required]
     });
 
     this.getDiagnosticCategories();
@@ -88,10 +95,16 @@ export class DiagnosticComponent implements AfterViewInit, OnInit {
       }
     });
   }
-
+  onVoitureChange(event: any): void {
+    const selectedVoiture = event.value;
+    console.log('Voiture sélectionnée :', selectedVoiture);
+  }
+  onTypeServiceChange(event: any): void {
+    const selectedTypeService = event.value;
+    console.log('Type Service sélectionnée :', selectedTypeService);
+  }
   getListVoitures(): void {
-    let id = this.storedUser ? JSON.parse(this.storedUser)._id : '';
-    this.serviceService.getVoitureById(id).subscribe({
+    this.serviceService.getVoitureById(this.id).subscribe({
       next: (data) => {
         this.mesVoitures = Array.isArray(data) ? data : [data];
         console.log(this.mesVoitures," ID EH");
@@ -112,25 +125,27 @@ export class DiagnosticComponent implements AfterViewInit, OnInit {
 
     const formValue = this.diagnosticForm.value;
 
-    const newService: Service = {
-      user: 'USER_ID',
-      voiture: 'VOITURE_ID',
-      typeService: formValue.typeService._id,
+    const newDiagnostic: Service = {
+      user: this.id,
+      voiture: formValue.voiture,
+      typeService: formValue.typeService,
       description: formValue.description,
-      visibleSymptom: formValue.visibleSymptom === 'true',
-      dateFixeVisite: new Date(formValue.dateFixeVisite),
-      heureFixeVisite: formValue.heureFixeVisite,
+      visibleSymptom: formValue.visibleSymptom,
+      dateSuggestionVisite: new Date(formValue.dateSuggestionVisite),
+      heureSuggestionVisite: formValue.heureSuggestionVisite
     };
-
-    this.serviceService.addService(newService).subscribe({
+    console.log(newDiagnostic);
+    this.serviceService.addService(newDiagnostic).subscribe({
       next: (res) => {
-        alert('Demande envoyée avec succès !');
+        alert(res);
+        this.router.navigate(['/rendezvous']);
       },
       error: (err) => {
         console.error(err);
       }
     });
   }
+
 
   ngAfterViewInit(): void {
     window.scrollTo(0, 0);
