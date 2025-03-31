@@ -111,7 +111,7 @@ export class EntretienComponent implements OnInit, AfterViewInit {
       dateDerniereEntretien: formValue.dateDerniereEntretien,
       dateSuggestionVisite: new Date(formValue.dateSuggestionVisite),
       heureSuggestionVisite: formValue.heureSuggestionVisite,
-      etat:""
+      etat:"devis"
     };
     console.log(newEntretien);
     this.serviceService.addService(newEntretien).subscribe({

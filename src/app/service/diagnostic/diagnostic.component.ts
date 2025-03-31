@@ -135,7 +135,7 @@ export class DiagnosticComponent implements AfterViewInit, OnInit {
       visibleSymptom: formValue.visibleSymptom,
       dateSuggestionVisite: new Date(formValue.dateSuggestionVisite),
       heureSuggestionVisite: formValue.heureSuggestionVisite,
-      etat:""
+      etat:"devis"
     };
     console.log(newDiagnostic);
     this.serviceService.addService(newDiagnostic).subscribe({
