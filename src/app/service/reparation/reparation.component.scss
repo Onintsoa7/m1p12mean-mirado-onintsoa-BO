@@ -13,3 +13,10 @@
     border: var(--color-highlight) 1px;
     }
 }
+
+.mat-checkbox {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background-color: white !important;
+}

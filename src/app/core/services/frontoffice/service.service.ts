@@ -68,6 +68,9 @@ export class ServiceService {
     return this.http.get<Service>(`${Constants.SERVICE_API}/${id}`);
   }
 
+  getServiceByIdUser(user: string): Observable<Service> {
+    return this.http.get<Service>(`${Constants.SERVICE_API}/user/${user}`);
+  }
   addService(data: Service): Observable<Service> {
     return this.http.post<Service>(Constants.SERVICE_API, data);
   }
@@ -104,4 +107,10 @@ export class ServiceService {
   deleteVoiture(id: string): Observable<Voiture> {
     return this.http.delete<Voiture>(`${Constants.VOITURE_API}/${id}`);
   }
+  // REHCERCHE
+  searchServices(keyword: string): Observable<Service[]> {
+    const url = `${Constants.SERVICE_API}/search-all?keyword=${encodeURIComponent(keyword)}`;
+    return this.http.get<Service[]>(url);
+  }
+
 }

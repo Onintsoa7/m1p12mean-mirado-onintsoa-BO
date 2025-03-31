@@ -3,6 +3,7 @@ import { TypeService } from "./type-service";
 import { Voiture } from "./voiture";
 
 export interface Service {
+  etat: string;
   _id?: string;
   user: string; // ID utilisateur
   typeService: string | TypeService;

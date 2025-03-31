@@ -4,6 +4,19 @@
     height: fit-content;
     background: var(--color-bg);
   }
+
+  .search-bar {
+    margin-bottom: 20px;
+    text-align: center;
+
+    input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 50%;
+    }
+  }
+
 .container-r {
     min-height: 75vh;
     background-color: var(--color-bg);
