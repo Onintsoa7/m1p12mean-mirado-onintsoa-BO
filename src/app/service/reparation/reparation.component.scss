@@ -26,6 +26,6 @@
 .mat-mdc-row{
     color: var(--color-text) !important;
 }
-.mat-mdc-table{
-    background-color: none !important;
+::ng-deep .mat-mdc-table{
+    background: none !important;
 }

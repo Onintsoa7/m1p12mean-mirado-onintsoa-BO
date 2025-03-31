@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { VoitureService } from '../../core/services/frontoffice/voiture.service';
+import { Voiture } from '../../core/models/voiture';
 
 @Component({
   selector: 'app-profil-data',
@@ -7,10 +9,36 @@ import { CommonModule } from '@angular/common';
   templateUrl: './profil-data.component.html',
   styleUrl: './profil-data.component.scss'
 })
-export class ProfilDataComponent {
+export class ProfilDataComponent implements OnInit {
 
   @Output() carFormClicked = new EventEmitter<void>();
   @Output() activeFactureClicked = new EventEmitter<void>();
+
+  storedUser = sessionStorage.getItem('connected_user');
+  id: string = this.storedUser ? JSON.parse(this.storedUser)._id : '';
+  voituresByUser: any[] = [];
+  constructor(private voitureService: VoitureService) { }
+
+  ngOnInit():void{
+    this.getVoituresListe();
+  }
+  getVoituresListe():void{
+    this.voitureService.getVoitureByUserId(this.id).subscribe((result: Voiture | Voiture[]) => {
+      const voitures = Array.isArray(result) ? result : [result];
+      this.voituresByUser = voitures.map(voiture => ({
+        _id: voiture._id,
+        marque: voiture.marque,
+        modele: voiture.modele,
+        annee: voiture.annee,
+        immatriculation: voiture.immatriculation,
+        typeCarburant: voiture.typeCarburant,
+        puissance: voiture.puissance,
+        kilometrage: voiture.kilometrage,
+        proprietaire: voiture.proprietaire
+      }));
+    });
+  }
+
   onCarFormClick() {
     this.carFormClicked.emit();
   }

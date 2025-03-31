@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { User, UserLogin } from '../core/models/user';
 import { SigninService } from '../core/services/signin.service';
 import { AuthService } from '../core/services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ import { AuthService } from '../core/services/auth.service';
     MatButtonModule,
     ReactiveFormsModule,
     TranslateModule,
-    RouterModule
+    RouterModule,
+    CommonModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'

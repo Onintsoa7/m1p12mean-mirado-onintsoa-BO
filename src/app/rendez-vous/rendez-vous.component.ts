@@ -5,10 +5,11 @@ import { FooterComponent } from '../footer/footer.component';
 import { Service } from '../core/models/service';
 import { ServiceService } from '../core/services/frontoffice/service.service';
 import { FormsModule } from '@angular/forms';
+import { RendezVousDetailComponent } from "./rendez-vous-detail/rendez-vous-detail.component";
 
 @Component({
   selector: 'app-rendez-vous',
-  imports: [CommonModule, HeaderPagesComponent, FooterComponent, FormsModule],
+  imports: [CommonModule, HeaderPagesComponent, FooterComponent, FormsModule, RendezVousDetailComponent],
   templateUrl: './rendez-vous.component.html',
   styleUrls: ['./rendez-vous.component.scss']
 })
@@ -20,26 +21,13 @@ export class RendezVousComponent implements OnInit {
   id: string = this.storedUser ? JSON.parse(this.storedUser)._id : '';
   selectedRendezVous: Service | null = null;
   searchQuery: string = '';
-  filteredRendezVousList: any[] | undefined;
+  isDetailRendezVousOpened: boolean = false;
   constructor(private serviceService: ServiceService) { }
 
   ngOnInit(): void {
     this.getRendezVousList();
   }
 
-  searchServices(): void {
-    if (!this.searchQuery.trim()) {
-      this.filteredRendezVousList = [...this.rendezVousList];
-      return;
-    }
-
-    this.serviceService.searchServices(this.searchQuery).subscribe({
-      next: (services: Service[]) => {
-        this.filteredRendezVousList = services;
-      },
-      error: (err) => console.error('Erreur lors de la recherche de services : ', err)
-    });
-  }
 
   getRendezVousList(): void {
     this.serviceService.getServiceByIdUser(this.id).subscribe({
@@ -68,9 +56,9 @@ export class RendezVousComponent implements OnInit {
           duree: service.duree,
           createdAt: service.createdAt,
           updatedAt: service.updatedAt,
-          serviceObject: service // Stocke l'objet complet pour affichage des détails
+          serviceObject: service 
         }));
-        console.log('Retrieved services:', this.rendezVousList);
+        console.log('Retrieved services:', this.rendezVousList.length);
       },
       error: (err) => console.error('Erreur lors de la récupération des services : ', err)
     });
@@ -81,16 +69,20 @@ export class RendezVousComponent implements OnInit {
         return { icon: 'fa-check-circle', class: 'valider' };
       case 'Repousser':
         return { icon: 'fa-minus-circle', class: 'repousser' };
-      case 'Pas encore validé':
-        return { icon: 'fa-info-circle', class: 'pas-valider' };
+      case 'devis':
+        return { icon: 'fa-solid fa-square-poll-vertical', class: 'pas-valider' };
       default:
         return { icon: 'fa-question-circle', class: 'inconnu' };
     }
   }
 
   onClickRendezVous(index: number): void {
+    this.isDetailRendezVousOpened = true;
     const selectedService = this.rendezVousList[index];
     this.selectedRendezVous = selectedService.serviceObject; // On passe l'objet complet au composant enfant
     this.rendezVousSelectionne = this.rendezVousSelectionne === index ? null : index;
+    console.log('====================================');
+    console.log(this.selectedRendezVous?.typeService);
+    console.log('====================================');
   }
 }

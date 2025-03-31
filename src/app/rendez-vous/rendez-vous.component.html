@@ -2,21 +2,12 @@
   <app-header-pages></app-header-pages>
   <div class="container-r">
 
-    <!-- Barre de recherche -->
-    <div class="search-bar">
-      <input
-        type="text"
-        [(ngModel)]="searchQuery"
-        placeholder="Rechercher par mot clé (description, état, véhicule, utilisateur...)"
-        (input)="searchServices()"
-      >
-    </div>
 
     <div class="titre">
       <h1>L'état de vos Rendez-vous</h1>
     </div>
 
-    <div class="boucle" *ngFor="let rendezVous of filteredRendezVousList; let i = index">
+    <div class="boucle" *ngFor="let rendezVous of rendezVousList; let i = index">
       <div class="data-rendez-vous">
         <div class="details-date">
           <div>
@@ -29,12 +20,16 @@
           <p>Type de service: {{ rendezVous.typeService?.nom || 'Inconnu' }}</p>
         </div>
         <div class="details-etat">
-          <span>{{ rendezVous.etat }}</span>
-          <span (click)="onClickRendezVous(i)">
-            <i class="fa fa-info-circle"></i> Voir détails
+          <span [ngClass]="getEtatIcon(rendezVous.serviceObject?.etat).class" class="etat" (click)="onClickRendezVous(i)">
+            <i class="fa" [ngClass]="getEtatIcon(rendezVous.serviceObject?.etat).icon"></i> 
+            {{ rendezVous.serviceObject?.etat }}
           </span>
         </div>
       </div>
+      <app-rendez-vous-detail 
+              *ngIf="rendezVousSelectionne === i && isDetailRendezVousOpened"
+              [rendezVous]="rendezVousList[i]">
+      </app-rendez-vous-detail>
     </div>
   </div>
   <app-footer></app-footer>

@@ -5,16 +5,28 @@
             <button class="add-button" (click)="onCarFormClick()">Ajouter</button>
         </div>
         <table>
-            <tr>
+            <thead>
+              <tr>
                 <th>Marque</th>
+                <th>Modèle</th>
                 <th>Année</th>
-                <th>Numéro</th>
-            </tr>
-            <tr *ngFor="let car of cars">
-                <td>{{ car.brand }}</td>
-                <td>{{ car.year }}</td>
-                <td>{{ car.number }}</td>
-            </tr>
+                <th>Immatriculation</th>
+                <th>Type de Carburant</th>
+                <th>Puissance</th>
+                <th>Kilométrage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let car of voituresByUser">
+                <td>{{ car.marque }}</td>
+                <td>{{ car.modele }}</td>
+                <td>{{ car.annee }}</td>
+                <td>{{ car.immatriculation }}</td>
+                <td>{{ car.typeCarburant }}</td>
+                <td>{{ car.puissance }}</td>
+                <td>{{ car.kilometrage }}</td>
+              </tr>
+            </tbody>
         </table>
     </div>
     <div class="profil-visit">
