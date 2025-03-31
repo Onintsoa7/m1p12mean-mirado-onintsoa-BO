@@ -15,10 +15,14 @@
             <input matInput type="password" placeholder="Enter your Password"
               value="mirado" formControlName="password" class="inputs">
           </div>
-          <button type="button" class="connect-button"
-            (click)="login()">Connect</button>
-          <p class="login-link">Don't Have a account <a
-              (click)="navigateToSignup()">Subscribe</a></p>
+          <button type="button" class="connect-button" (click)="login()" [disabled]="isLoading">
+            <ng-container *ngIf="isLoading; else buttonText">
+              <span class="loader"></span>
+            </ng-container>
+            <ng-template #buttonText>Se Connecter</ng-template>
+          </button>
+          <p class="login-link">Avez-vous déjà un compte <a
+              (click)="navigateToSignup()">S'inscrire</a></p>
       </div>
     </div>
   </form>

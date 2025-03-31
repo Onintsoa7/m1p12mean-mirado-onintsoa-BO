@@ -20,3 +20,12 @@
   opacity: 1 !important;
   background-color: white !important;
 }
+.mat-mdc-header-cell {
+    color: var(--color-text) !important;
+}
+.mat-mdc-row{
+    color: var(--color-text) !important;
+}
+.mat-mdc-table{
+    background-color: none !important;
+}

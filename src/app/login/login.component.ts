@@ -27,6 +27,7 @@ import { AuthService } from '../core/services/auth.service';
 export class LoginComponent {
   @Output() loginOk = new EventEmitter<void>();
   loginForm: FormGroup;
+  isLoading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -42,7 +43,7 @@ export class LoginComponent {
 
   login() {
     if (this.loginForm.invalid) return;
-
+    this.isLoading = true; 
     const userLogin: UserLogin = {
       adresseMail: this.loginForm.value.adresseMail,
       password: this.loginForm.value.password
@@ -54,9 +55,11 @@ export class LoginComponent {
         console.log('Utilisateur connecté :', user);
         this.loginOk.emit();
         this.router.navigate(['/landing-page']);
+        this.isLoading = false;
       },
       error: (err) => {
         console.error('Échec de la connexion :', err);
+        this.isLoading = false;
       }
     });
   }

@@ -116,7 +116,6 @@ export class EntretienComponent implements OnInit, AfterViewInit {
     console.log(newEntretien);
     this.serviceService.addService(newEntretien).subscribe({
       next: (res) => {
-        alert(res);
         this.router.navigate(['/rendezvous']);
       },
       error: (err) => {

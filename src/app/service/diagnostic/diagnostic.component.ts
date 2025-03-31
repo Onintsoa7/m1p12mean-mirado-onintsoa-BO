@@ -140,7 +140,6 @@ export class DiagnosticComponent implements AfterViewInit, OnInit {
     console.log(newDiagnostic);
     this.serviceService.addService(newDiagnostic).subscribe({
       next: (res) => {
-        alert(res);
         this.router.navigate(['/rendezvous']);
       },
       error: (err) => {

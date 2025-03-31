@@ -2,18 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderPagesComponent } from '../header-pages/header-pages.component';
 import { FooterComponent } from '../footer/footer.component';
-import { RendezVousEditComponent } from './rendez-vous-edit/rendez-vous-edit.component';
-import { Observable } from 'rxjs';
-import { Voiture } from '../core/models/voiture';
-import { TypeService } from '../core/models/type-service';
 import { Service } from '../core/models/service';
 import { ServiceService } from '../core/services/frontoffice/service.service';
-import { RendezVousDetailComponent } from './rendez-vous-detail/rendez-vous-detail.component';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-rendez-vous',
-  imports: [CommonModule, HeaderPagesComponent, FooterComponent, RendezVousEditComponent, RendezVousDetailComponent, FormsModule],
+  imports: [CommonModule, HeaderPagesComponent, FooterComponent, FormsModule],
   templateUrl: './rendez-vous.component.html',
   styleUrls: ['./rendez-vous.component.scss']
 })

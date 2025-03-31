@@ -17,13 +17,42 @@
   border-radius: 20px;
   width: 60%;
   margin-top: 40px;
-  background: var(--lt-color-gray-800);
+  background: rgba(38, 34, 34, 0.2509803922);
   padding: 2rem;
   /* width: fit-content; */
   display: flex;
   flex-direction: column;
 }
+::ng-deep .mat-mdc-text-field-wrapper {
+  background: none !important;
+}
+input, textarea {
+  background: none;
+  color: white;
+  border-top: 0 !important;
+  border-right: 0 !important;
+  border-left: 0 !important;
+  border-radius: 0 !important;
+  border-color: var(--mdc-filled-text-field-active-indicator-color, var(--mat-sys-on-surface-variant)) !important;
+}
 
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(93%) sepia(8%) saturate(0%) hue-rotate(180deg) brightness(96%) contrast(99%);
+}
+
+input[type="date"]::-moz-calendar-picker-indicator,
+input[type="time"]::-moz-calendar-picker-indicator {
+  color: whitesmoke;
+}
+
+input[type="date"]::-ms-clear,
+input[type="time"]::-ms-clear {
+  color: whitesmoke;
+}
+::ng-deep .mdc-floating-label{
+  color: whitesmoke !important;
+}
 h2 {
   font-size: 1.8rem;
   margin-bottom: 1rem;
@@ -34,7 +63,7 @@ h2 {
   text-align: center;
 }
 span {
-  color: #FFD700;
+  color: var(--color-highlight);
 }
 
 .form-group {
@@ -71,7 +100,7 @@ span {
     transition: 0.3s;
 
     &:hover {
-      background-color: var(--color-text);
+      background-color: #997018;
     }
   }
 }
@@ -105,7 +134,7 @@ span {
   transition: 0.3s;
 
   &:hover {
-    background-color: var(--color-text);
+    background-color: #997018;
   }
 }
 
