@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +10,9 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'm1p12mean-mirado-onintsoa-BO';
+  constructor(private authService: AuthService, private router: Router) {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/backoffice']); // Redirection si pas connecté
+    }
+  }
 }
