@@ -5,6 +5,9 @@ export interface User {
   password: string;
   role: 'ADMIN' | 'CLIENT' | 'MECANICIEN';
   photo?: string;
+  adresse: string;
+  CIN: string;
+  dateDeNaissance: Date;
 }
 export interface UserLogin {
   adresseMail: string;
