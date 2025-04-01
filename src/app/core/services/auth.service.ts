@@ -1,6 +1,10 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
+import { Observable } from 'rxjs';
+import { User } from '../models/user';
+import { HttpClient } from '@angular/common/http';
+import { Constants } from '../constants';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +13,7 @@ export class AuthService {
   private readonly TOKEN_KEY = 'bo_auth_token';
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,private http: HttpClient
   ) {}
 
   saveToken(token: string): void {
@@ -43,5 +47,13 @@ export class AuthService {
     } catch (e) {
       return null;
     }
+  }
+
+  getListMecanicien(role: string): Observable<User> {
+    return this.http.get<User>(`${Constants.USERS_API}/role/${role}`);
+  }
+
+  addUser(data: User): Observable<User> {
+    return this.http.post<User>(`${Constants.USERS_API}/register`, data);
   }
 }
