@@ -22,21 +22,20 @@ export const routes: Routes = [
   { path: 'services/:id', component: ServiceComponent, canActivate: [AppAuthGuard] },
   { path: 'profiles', component: ProfilComponent, canActivate: [AppAuthGuard] },
   { path: 'rendezvous', component: RendezVousComponent, canActivate: [AppAuthGuard] },
-  // back-office
   { path: 'backoffice', component: BackOfficeComponent},
   {
-    path: 'backoffice/mecanicien',component: MecanicienComponent,canActivate: [AppAuthGuard],
+    path: 'backoffice/mecanicien',component: MecanicienComponent,
     children: [
-      { path: '', component: DashboardComponent, canActivate: [AppAuthGuard] },
-      { path: 'rendezvous', component: MecanicienRdv, canActivate: [AppAuthGuard] }
+      { path: '', component: DashboardComponent},
+      { path: 'rendezvous', component: MecanicienRdv}
     ]
   },
   {
-    path: 'backoffice/admin', component: AdminComponent,canActivate: [AppAuthGuard],
+    path: 'backoffice/admin', component: AdminComponent,
     children: [
-      { path: '', component: AdminDashboard, canActivate: [AppAuthGuard] },
-      { path: 'mecanicien', component: mecano, canActivate: [AppAuthGuard] },
-      { path: 'rendezvous', component: adminRendezVous, canActivate: [AppAuthGuard] }
+      { path: '', component: AdminDashboard},
+      { path: 'mecanicien', component: mecano},
+      { path: 'rendezvous', component: adminRendezVous}
     ]
   }
 ];

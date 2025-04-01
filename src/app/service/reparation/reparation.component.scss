@@ -13,3 +13,19 @@
     border: var(--color-highlight) 1px;
     }
 }
+
+.mat-checkbox {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background-color: white !important;
+}
+.mat-mdc-header-cell {
+    color: var(--color-text) !important;
+}
+.mat-mdc-row{
+    color: var(--color-text) !important;
+}
+::ng-deep .mat-mdc-table{
+    background: none !important;
+}

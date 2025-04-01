@@ -1,3 +1,8 @@
+.titre{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .details-container {
     margin: 25px;
     padding: 20px;
@@ -13,12 +18,17 @@
 .profil-visit {
     color: var(--color-text);
     background: var(--color-primary);
-    padding: 20px;
+    padding: 30px;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     margin: 20px;
     width: 48%; 
     min-width: 300px; 
+    overflow-y: auto;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .profil-car h3,

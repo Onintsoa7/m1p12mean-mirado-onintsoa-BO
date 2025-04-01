@@ -15,11 +15,11 @@ export class HeaderComponent implements OnInit {
   isServicesMenuOpen = false;
   hasConnectedUSer = false;
 
-  ngOnInit() {
-    // const storedUser = this.signin.getConnectedUser();
-    // if (storedUser) {
-    //   this.hasConnectedUSer = true;
-    // }
+  ngOnInit(): void {
+    const storedUser = this.signin.getConnectedUser();
+    if (storedUser) {
+      this.hasConnectedUSer = true;
+    }
   }
 
   @HostListener('window:scroll', [])

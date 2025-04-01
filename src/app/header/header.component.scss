@@ -101,6 +101,7 @@
     color: var(--color-highlight);
     border: var(--color-highlight) 3px solid;
     transition: 0.3s;
+    margin-right: 20px;
     &:hover{
       transition: 0.5s;
       background: var(--color-highlight);
@@ -129,7 +130,6 @@
       color: var(--color-text);
     }
   }
-
   .deconnect{
     width: 120px;
     border-radius: 25px;

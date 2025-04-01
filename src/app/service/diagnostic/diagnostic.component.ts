@@ -29,6 +29,11 @@ import { AuthService } from '../../core/services/auth.service';
 import { Voiture } from '../../core/models/voiture';
 import { SigninService } from '../../core/services/signin.service';
 import { identity } from 'rxjs';
+import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { Router } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -41,7 +46,11 @@ import { identity } from 'rxjs';
     MatButtonModule,
     MatRadioModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   templateUrl: './diagnostic.component.html',
   styleUrls: ['./diagnostic.component.scss', '../service.component.scss']
@@ -51,29 +60,36 @@ export class DiagnosticComponent implements AfterViewInit, OnInit {
   mesVoitures: Voiture[] = [];
   diagnosticForm!: FormGroup;
   storedUser = sessionStorage.getItem('connected_user');
+  id: string = this.storedUser ? JSON.parse(this.storedUser)._id : '';
   @Input() serviceImage!: string;
   @Input() serviceTitle!: string;
-
+  isLoading: boolean = false;
   constructor(
     private serviceService: ServiceService,
     private fb: FormBuilder,
-        private signin : SigninService
+    private signin : SigninService,
+    private router : Router,
+    private snackBar: MatSnackBar
   ) {}
+
+  initForm(){
+    this.diagnosticForm = this.fb.group({
+      typeService: [null, Validators.required],
+      voiture:[null, Validators.required],
+      description: [''],
+      dateDerniereEntretien:[null],
+      visibleSymptom: [null, Validators.required],
+      dateSuggestionVisite: ['', Validators.required],
+      heureSuggestionVisite: ['', Validators.required]
+    });
+  }
 
   ngOnInit(): void {
     const storedUser = sessionStorage.getItem('connected_user');
     if (storedUser) {
       const user = JSON.parse(storedUser);
     }
-    this.diagnosticForm = this.fb.group({
-      typeService: [null, Validators.required],
-      description: [''],
-      visibleSymptom: ['false'],
-      image: [null],
-      dateFixeVisite: ['', Validators.required],
-      heureFixeVisite: ['', Validators.required]
-    });
-
+    this.initForm();
     this.getDiagnosticCategories();
     this.getListVoitures();
   }
@@ -88,13 +104,16 @@ export class DiagnosticComponent implements AfterViewInit, OnInit {
       }
     });
   }
-
+  onVoitureChange(event: any): void {
+    const selectedVoiture = event.value;
+  }
+  onTypeServiceChange(event: any): void {
+    const selectedTypeService = event.value;
+  }
   getListVoitures(): void {
-    let id = this.storedUser ? JSON.parse(this.storedUser)._id : '';
-    this.serviceService.getVoitureById(id).subscribe({
+    this.serviceService.getVoitureById(this.id).subscribe({
       next: (data) => {
         this.mesVoitures = Array.isArray(data) ? data : [data];
-        console.log(this.mesVoitures," ID EH");
       },
       error: (err) => {
         console.error('Erreur lors du chargement des voitures', err);
@@ -110,27 +129,35 @@ export class DiagnosticComponent implements AfterViewInit, OnInit {
   submitForm(): void {
     if (this.diagnosticForm.invalid) return;
 
+    this.isLoading = true; // Démarrer le loader
+
     const formValue = this.diagnosticForm.value;
 
-    const newService: Service = {
-      user: 'USER_ID',
-      voiture: 'VOITURE_ID',
-      typeService: formValue.typeService._id,
+    const newDiagnostic: Service = {
+      user: this.id,
+      voiture: formValue.voiture,
+      typeService: formValue.typeService,
+      dateDerniereEntretien: formValue.dateDerniereEntretien,
       description: formValue.description,
-      visibleSymptom: formValue.visibleSymptom === 'true',
-      dateFixeVisite: new Date(formValue.dateFixeVisite),
-      heureFixeVisite: formValue.heureFixeVisite,
+      visibleSymptom: formValue.visibleSymptom,
+      dateSuggestionVisite: new Date(formValue.dateSuggestionVisite),
+      heureSuggestionVisite: formValue.heureSuggestionVisite,
+      etat: "devis"
     };
 
-    this.serviceService.addService(newService).subscribe({
+    this.serviceService.addService(newDiagnostic).subscribe({
       next: (res) => {
-        alert('Demande envoyée avec succès !');
+        this.isLoading = false; // Arrêter le loader
+        this.snackBar.open('Demande de devis envoyée avec succès!', 'Fermer', { duration: 3000, panelClass: 'success-snackbar' });
+        this.router.navigate(['/rendezvous']);
       },
       error: (err) => {
-        console.error(err);
+        this.isLoading = false; // Arrêter le loader
+        this.snackBar.open('Erreur lors de l\'envoi du devis.', 'Fermer', { duration: 3000, panelClass: 'error-snackbar' });
       }
     });
   }
+
 
   ngAfterViewInit(): void {
     window.scrollTo(0, 0);
