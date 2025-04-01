@@ -1,6 +1,13 @@
 <div class="login-container">
   <nz-card class="login-card">
     <h2 class="title">Se connecter</h2>
+
+    <!-- Boutons de sélection d'utilisateur -->
+    <div class="user-type-buttons">
+      <button nz-button nzType="default" (click)="setUserType('admin')" [nzLoading]="isLoading">Admin</button>
+      <button nz-button nzType="default" (click)="setUserType('mecano')" [nzLoading]="isLoading">Mecano</button>
+    </div>
+
     <form nz-form [formGroup]="loginForm" (ngSubmit)="submitForm()">
 
       <!-- Email -->
