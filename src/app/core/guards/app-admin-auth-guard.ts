@@ -7,7 +7,7 @@ import { Location } from '@angular/common';
 @Injectable({
     providedIn: 'root'
 })
-export class AppAuthGuard  {
+export class AppAdminAuthGuard  {
 
     constructor(
         protected router: Router,
@@ -29,9 +29,13 @@ export class AppAuthGuard  {
     isAccessAllowed(): boolean {
       let storedUser = sessionStorage.getItem('connected_admin');
       if (storedUser) {
-        return true;
-      }
+        let parsedUser = JSON.parse(storedUser);
+        if(parsedUser.role === "ADMIN"){
+          return true;
+        }
         return false;
+      }
+      return false;
     }
 
 }

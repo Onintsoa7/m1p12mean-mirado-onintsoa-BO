@@ -39,7 +39,6 @@ export class BackOfficeComponent {
   ) {
     this.initForm();
   }
-
   initForm() {
     if (this.userType === 'admin') {
       this.loginForm = this.fb.group({

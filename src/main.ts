@@ -9,6 +9,12 @@ import { FormsModule } from '@angular/forms';
 import { fr_FR, provideNzI18n } from 'ng-zorro-antd/i18n';
 import { routes } from './app/app.routes';
 import { provideRouter } from '@angular/router';
+
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+
+registerLocaleData(localeFr);
+
 bootstrapApplication(AppComponent, {
   providers: [
     ...appConfig.providers,
@@ -20,8 +26,10 @@ bootstrapApplication(AppComponent, {
       }),
       FormsModule
     ),
-    provideNzI18n(fr_FR),
     provideHttpClient(withFetch()),
-    provideRouter(routes), provideNzI18n(fr_FR), importProvidersFrom(FormsModule),  provideHttpClient(),
-  ]
+    provideRouter(routes),
+    provideNzI18n(fr_FR),
+    importProvidersFrom(FormsModule),
+    provideHttpClient()
+  ]
 });

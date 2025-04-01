@@ -7,21 +7,23 @@ import { DashboardComponent as AdminDashboard } from './back-office/admin/dashbo
 import { MecanicienComponent as mecano } from './back-office/admin/mecanicien/mecanicien.component';
 import { RendezVousComponent as adminRendezVous } from './back-office/admin/rendez-vous/rendez-vous.component';
 import { RendezVousComponent as MecanicienRdv } from './back-office/mecanicien/rendez-vous/rendez-vous.component';
+import { AppMecanoAuthGuard } from './core/guards/app-mecano-auth-guard';
+import { AppAdminAuthGuard } from './core/guards/app-admin-auth-guard';
 export const routes: Routes = [
     { path: '', component: BackOfficeComponent},
     { path: 'backoffice', component: BackOfficeComponent},
     {
-      path: 'backoffice/mecanicien',component: MecanicienComponent,
+      path: 'backoffice/mecanicien',component: MecanicienComponent, canActivate: [AppMecanoAuthGuard],
       children: [
-        { path: '', component: DashboardComponent},
-        { path: 'rendezvous', component: MecanicienRdv}
+        { path: '', component: DashboardComponent, canActivate: [AppMecanoAuthGuard]},
+        { path: 'rendezvous', component: MecanicienRdv, canActivate: [AppMecanoAuthGuard]}
       ]
     },
     {
-      path: 'backoffice/admin', component: AdminComponent,
+      path: 'backoffice/admin', component: AdminComponent,canActivate: [AppAdminAuthGuard],
       children: [
-        { path: '', component: AdminDashboard},
-        { path: 'mecanicien', component: mecano},
-        { path: 'rendezvous', component: adminRendezVous}
+        { path: '', component: AdminDashboard,canActivate: [AppAdminAuthGuard]},
+        { path: 'mecanicien', component: mecano,canActivate: [AppAdminAuthGuard]},
+        { path: 'rendezvous', component: adminRendezVous,canActivate: [AppAdminAuthGuard]}
       ]
     }];

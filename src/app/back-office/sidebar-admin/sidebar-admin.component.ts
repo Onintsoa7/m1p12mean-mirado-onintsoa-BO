@@ -22,7 +22,7 @@ export class SidebarAdminComponent {
   constructor(private router: Router) {}
   logout(): void {
     console.log("Déconnexion...");
-    this.router.navigate(['/login']); 
+    this.router.navigate(['/login']);
   }
   navigateTo(route: string): void {
     this.router.navigate([route]);
