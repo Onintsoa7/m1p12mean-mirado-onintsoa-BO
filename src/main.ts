@@ -22,6 +22,6 @@ bootstrapApplication(AppComponent, {
     ),
     provideNzI18n(fr_FR),
     provideHttpClient(withFetch()),
-    provideRouter(routes),
+    provideRouter(routes), provideNzI18n(fr_FR), importProvidersFrom(FormsModule),  provideHttpClient(),
   ]
 });
