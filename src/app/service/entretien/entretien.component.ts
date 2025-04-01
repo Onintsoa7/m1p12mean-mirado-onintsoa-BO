@@ -24,6 +24,8 @@ import {
 import { Voiture } from '../../core/models/voiture';
 import { Service } from '../../core/models/service';
 import { Router } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-entretien',
   imports: [
@@ -35,6 +37,8 @@ import { Router } from '@angular/router';
     MatSelectModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   templateUrl: './entretien.component.html',
   styleUrls: ['./entretien.component.scss', '../service.component.scss'],
@@ -47,10 +51,14 @@ export class EntretienComponent implements OnInit, AfterViewInit {
   storedUser = sessionStorage.getItem('connected_user');
   id: string = this.storedUser ? JSON.parse(this.storedUser)._id : '';
   entretienForm!: FormGroup;
+
+  isLoading: boolean = false;
+  
   constructor(
     public serviceService: ServiceService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -64,6 +72,8 @@ export class EntretienComponent implements OnInit, AfterViewInit {
         this.mesEntretiens = Array.isArray(data) ? data : [data];
       },
       error: (err) => {
+        this.isLoading = false; // Arrêter le loader
+        this.snackBar.open('Erreur lors de l\'envoi du devis.', 'Fermer', { duration: 3000, panelClass: 'error-snackbar' });
         console.error('Erreur lors du chargement des catégories', err);
       },
     });
@@ -104,6 +114,7 @@ export class EntretienComponent implements OnInit, AfterViewInit {
 
     const formValue = this.entretienForm.value;
 
+    this.isLoading = true; // Démarrer le loader
     const newEntretien: Service = {
       user: this.id,
       voiture: formValue.voiture,
@@ -116,10 +127,14 @@ export class EntretienComponent implements OnInit, AfterViewInit {
     console.log(newEntretien);
     this.serviceService.addService(newEntretien).subscribe({
       next: (res) => {
+        this.isLoading = false; // Arrêter le loader
+        this.snackBar.open('Demande de devis envoyée avec succès!', 'Fermer', { duration: 3000, panelClass: 'success-snackbar' });
         this.router.navigate(['/rendezvous']);
+        
       },
       error: (err) => {
-        console.error(err);
+        this.isLoading = false; // Arrêter le loader
+        this.snackBar.open('Erreur lors de l\'envoi du devis.', 'Fermer', { duration: 3000, panelClass: 'error-snackbar' });
       },
     });
   }

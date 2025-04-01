@@ -20,6 +20,8 @@ import { Voiture } from '../../core/models/voiture';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Service } from '../../core/models/service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 export interface DisplayedPiece extends Piece {
   alreadyHave: boolean;
 }
@@ -41,7 +43,9 @@ export interface DisplayedPiece extends Piece {
     MatIconModule,
     MatChipsModule,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   templateUrl: './reparation.component.html',
   styleUrls: ['./reparation.component.scss', '../service.component.scss'],
@@ -63,7 +67,7 @@ export class ReparationComponent implements OnInit {
   repartionId!: string;
   @Input() serviceImage!: string;
   @Input() serviceTitle!: string;
-
+  isLoading: boolean = false;
   initForm(){
     this.reparationForm = this.fb.group({
       voiture:[null, Validators.required],
@@ -73,7 +77,8 @@ export class ReparationComponent implements OnInit {
     });
   }
   constructor(public serviceService: ServiceService,
-      private fb: FormBuilder, private router: Router) { }
+      private fb: FormBuilder, private router: Router,
+      private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getListPieces();
@@ -175,8 +180,6 @@ export class ReparationComponent implements OnInit {
 
   submitForm(): void {
     if (this.reparationForm.invalid) {
-      console.log(this.repartionId, " ID EH");
-      console.error('Form is invalid. Details:');
       Object.keys(this.reparationForm.controls).forEach(controlName => {
         const controlErrors = this.reparationForm.get(controlName)?.errors;
         if (controlErrors) {
@@ -188,6 +191,7 @@ export class ReparationComponent implements OnInit {
 
     const formValue = this.reparationForm.value;
 
+    this.isLoading = true; // Démarrer le loader
     const selectedPieceIds = this.selectedPieces.map(p => p._id!);
     const avecPieceValues = this.selectedPieces.map(p => p.alreadyHave);
     const newService: Service = {
@@ -201,15 +205,16 @@ export class ReparationComponent implements OnInit {
       typeService: this.repartionId!,
       etat:"devis"
     };
-
-    console.log('Service envoyé :', newService);
-
     this.serviceService.addService(newService).subscribe({
       next: (res) => {
-        alert('Service enregistré avec succès.');
+        this.isLoading = false; // Arrêter le loader
+        this.snackBar.open('Demande de devis envoyée avec succès!', 'Fermer', { duration: 3000, panelClass: 'success-snackbar' });
         this.router.navigate(['/rendezvous']);
       },
-      error: (err) => console.error('Erreur lors de l\'enregistrement du service', err)
+      error: (err) => {
+        this.isLoading = false; // Arrêter le loader
+        this.snackBar.open('Erreur lors de l\'envoi du devis.', 'Fermer', { duration: 3000, panelClass: 'error-snackbar' });
+      }
     });
   }
 }

@@ -78,8 +78,13 @@
       </div>
       <p class="note">*Peut être modifié selon la disponibilité des
         mécaniciens</p>
-
-      <button class="submit-btn" (click)="submitForm()">Demander un devis</button>
+      
+        <button class="submit-btn" (click)="submitForm()" [disabled]="isLoading">
+          <ng-container *ngIf="isLoading; else submitText">
+            <mat-spinner diameter="20"></mat-spinner>
+          </ng-container>
+          <ng-template #submitText>Demander un devis</ng-template>
+        </button>
     </form>
   </div>
 </div>

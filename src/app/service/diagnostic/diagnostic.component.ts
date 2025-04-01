@@ -32,6 +32,8 @@ import { identity } from 'rxjs';
 import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { Router } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -46,7 +48,9 @@ import { Router } from '@angular/router';
     MatSelectModule,
     MatFormFieldModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   templateUrl: './diagnostic.component.html',
   styleUrls: ['./diagnostic.component.scss', '../service.component.scss']
@@ -59,12 +63,13 @@ export class DiagnosticComponent implements AfterViewInit, OnInit {
   id: string = this.storedUser ? JSON.parse(this.storedUser)._id : '';
   @Input() serviceImage!: string;
   @Input() serviceTitle!: string;
-
+  isLoading: boolean = false;
   constructor(
     private serviceService: ServiceService,
     private fb: FormBuilder,
     private signin : SigninService,
-    private router : Router
+    private router : Router,
+    private snackBar: MatSnackBar
   ) {}
 
   initForm(){
@@ -124,6 +129,8 @@ export class DiagnosticComponent implements AfterViewInit, OnInit {
   submitForm(): void {
     if (this.diagnosticForm.invalid) return;
 
+    this.isLoading = true; // Démarrer le loader
+
     const formValue = this.diagnosticForm.value;
 
     const newDiagnostic: Service = {
@@ -135,15 +142,18 @@ export class DiagnosticComponent implements AfterViewInit, OnInit {
       visibleSymptom: formValue.visibleSymptom,
       dateSuggestionVisite: new Date(formValue.dateSuggestionVisite),
       heureSuggestionVisite: formValue.heureSuggestionVisite,
-      etat:"devis"
+      etat: "devis"
     };
-    console.log(newDiagnostic);
+
     this.serviceService.addService(newDiagnostic).subscribe({
       next: (res) => {
+        this.isLoading = false; // Arrêter le loader
+        this.snackBar.open('Demande de devis envoyée avec succès!', 'Fermer', { duration: 3000, panelClass: 'success-snackbar' });
         this.router.navigate(['/rendezvous']);
       },
       error: (err) => {
-        console.error(err);
+        this.isLoading = false; // Arrêter le loader
+        this.snackBar.open('Erreur lors de l\'envoi du devis.', 'Fermer', { duration: 3000, panelClass: 'error-snackbar' });
       }
     });
   }
