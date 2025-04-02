@@ -96,7 +96,12 @@ export class MecanicienComponent implements OnInit {
     return age;
   }
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private serviceService: ServiceService
+  ) {}
 
   initForm() {
     this.mecanicienForm = this.fb.group({
@@ -123,39 +128,48 @@ export class MecanicienComponent implements OnInit {
     this.mecForm = false;
     if (!this.selectedMecanicien || !this.moisFiltre) return;
 
-    const mois = this.moisFiltre.getMonth();
+    const mois = this.moisFiltre.getMonth() + 1; // +1 car les mois en JS sont de 0 à 11
     const annee = this.moisFiltre.getFullYear();
 
-    // const series = Object.entries(this.selectedMecanicien.heuresParJour)
-    //   .filter(([dateStr, _]) => {
-    //     const date = new Date(dateStr);
-    //     return date.getMonth() === mois && date.getFullYear() === annee;
-    //   })
-    //   .map(([date, heures]) => ({ date, heures }));
+    this.serviceService.getChargeDeTravailParMecanoParDateParMois(this.selectedMecanicien._id!, annee, mois)
+      .subscribe({
+        next: (data) => {
+          console.log('Données reçues du backend :', data);
+          const series = Object.keys(data).map(date => ({
+            date,
+            heures: data[date]
+          }));
 
-    this.echartOption = {
-      tooltip: {
-        trigger: 'axis',
-      },
-      xAxis: {
-        type: 'category',
-        // data: series.map(d => d.date),
-        name: 'Date',
-      },
-      yAxis: {
-        type: 'value',
-        name: 'Heures',
-      },
-      series: [
-        {
-          // data: series.map(d => d.heures),
-          type: 'line',
-          smooth: true,
-          name: this.selectedMecanicien.nom,
+          this.echartOption = {
+            tooltip: {
+              trigger: 'axis',
+            },
+            xAxis: {
+              type: 'category',
+              data: series.map(d => d.date),
+              name: 'Date',
+            },
+            yAxis: {
+              type: 'value',
+              name: 'Heures',
+            },
+            series: [
+              {
+                data: series.map(d => d.heures),
+                type: 'line',
+                smooth: true,
+                name: this.selectedMecanicien?.nom
+              },
+            ],
+          };
         },
-      ],
-    };
+        error: (err) => {
+          console.error('Erreur lors du chargement des données :', err);
+        }
+      });
   }
+
+
   disableFutureDate = (current: Date): boolean => {
     return current > new Date();
   };
@@ -174,8 +188,8 @@ export class MecanicienComponent implements OnInit {
       adresse: formValue.adresse,
       CIN: formValue.cin,
       numeroTel: formValue.contact,
-      password: formValue.nom + " mecano",
-      role: "MECANICIEN"
+      password: formValue.nom + ' mecano',
+      role: 'MECANICIEN',
     };
 
     console.log(newUser);
@@ -198,7 +212,6 @@ export class MecanicienComponent implements OnInit {
       },
     });
   }
-
 
   activateMecForm(): void {
     this.mecForm = true;
