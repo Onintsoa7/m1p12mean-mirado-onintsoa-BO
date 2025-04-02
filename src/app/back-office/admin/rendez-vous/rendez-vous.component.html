@@ -10,7 +10,7 @@
                 @for (rdv of getRendezVousDuJour(date); track rdv) {
                 <li>
                     <nz-badge nzStatus="processing"
-                        [nzText]="rdv.nom + ' | ' + rdv.type_service + ' | ' + rdv.voiture + ' | ' + rdv.heure"></nz-badge>
+                    [nzText]="rdv.voiture + ''"></nz-badge>
                 </li>
                 }
             </ul>
@@ -24,7 +24,7 @@
         </div>
 
         <div class="container-rendez-vous">
-            @for (rdv of getRendezVousSelected(); let i = $index; track i) {
+            <!-- @for (rdv of getRendezVousSelected(); let i = $index; track i) {
             <div class="rendez-vous" (click)="openForm(i, rdv)">
                 <div class="data">
                     <h5>{{ rdv.dateSuggestionVisite }} à {{ rdv.heure }}</h5>
@@ -42,8 +42,6 @@
                     </h5>
                 </div>
             </div>
-
-            <!-- Formulaire visible si clic sur un RDV non validé -->
             <div class="forms-rendez-vous" *ngIf="selectedRDVIndex === i">
                 <form [formGroup]="formRendezVous" (ngSubmit)="submitForm()" nz-form nzLayout="vertical">
 
@@ -83,6 +81,6 @@
             </div>
             }
         </div>
-
+      -->
     </div>
 </div>

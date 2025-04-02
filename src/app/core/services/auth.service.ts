@@ -52,8 +52,10 @@ export class AuthService {
   getListMecanicien(role: string): Observable<User> {
     return this.http.get<User>(`${Constants.USERS_API}/role/${role}`);
   }
-
   addUser(data: User): Observable<User> {
     return this.http.post<User>(`${Constants.USERS_API}/register`, data);
+  }
+  countMecaniciens(): Observable<{ count: number }> {
+    return this.http.get<{ count: number }>(`${Constants.USERS_API}/mecaniciens/count`);
   }
 }

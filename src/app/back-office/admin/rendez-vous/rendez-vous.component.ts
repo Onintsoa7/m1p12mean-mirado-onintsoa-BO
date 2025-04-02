@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { CommonModule } from '@angular/common';
@@ -8,6 +8,8 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { ServiceService } from '../../../core/services/frontoffice/service.service';
+import { Service } from '../../../core/models/service';
 
 @Component({
   selector: 'app-rendez-vous',
@@ -27,7 +29,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
   templateUrl: './rendez-vous.component.html',
   styleUrl: './rendez-vous.component.scss'
 })
-export class RendezVousComponent {
+export class RendezVousComponent implements OnInit {
   selectedDate: string = new Date().toLocaleDateString('fr-CA');
   selectedDateObject: Date = new Date();
   selectedRDVIndex: number | null = null;
@@ -35,7 +37,11 @@ export class RendezVousComponent {
 
   mecaniciens = ['Mickael', 'Jean', 'Tiana', 'Andry'];
 
-  constructor(private fb: FormBuilder) {
+  ngOnInit(): void {
+      this.loadRendezVous();
+  }
+
+  constructor(private fb: FormBuilder, private serviceService: ServiceService) {
     this.formRendezVous = this.fb.group({
       mecanicien: [null, Validators.required],
       date: [null, Validators.required],
@@ -44,52 +50,20 @@ export class RendezVousComponent {
     });
   }
 
-  readonly rendezVousData = [
-    {
-      nom: 'RAKOTO',
-      type_service: 'Entretien',
-      voiture: 'MAZDA',
-      dateSuggestionVisite: '2025-03-08',
-      heure: '09:00',
-      partie: 'Freinage',
-      piece: 'Plaquettes de frein',
-      status: 'Non Lue'
-    },
-    {
-      nom: 'RAKOTO',
-      type_service: 'Entretien',
-      voiture: 'MAZDA',
-      dateSuggestionVisite: '2025-03-08',
-      heure: '14:00',
-      partie: 'Moteur',
-      piece: 'Bougie',
-      status: 'Validé'
-    },
-    {
-      nom: 'RAKOTO',
-      type_service: 'Entretien',
-      voiture: 'MAZDA',
-      dateSuggestionVisite: '2025-03-11',
-      heure: '11:30',
-      partie: 'Échappement',
-      piece: 'Silencieux',
-      status: 'Non Lue'
-    }
-  ];
-
+  rendezVousData: Service[] = [];
   getRendezVousDuJour(date: Date) {
     const key = date.toLocaleDateString('fr-CA');
-    return this.rendezVousData.filter(rdv => rdv.dateSuggestionVisite === key);
+    return this.rendezVousData.filter(rdv => rdv.dateSuggestionVisite);
   }
 
-  getRendezVousSelected(): any[] {
-    return this.rendezVousData.filter(rdv => rdv.dateSuggestionVisite === this.selectedDate);
+  getRendezVousSelected() {
+    // return this.rendezVousData.filter(rdv => rdv.dateSuggestionVisite === this.selectedDate);
   }
 
   onSelectChange(date: Date): void {
     this.selectedDateObject = date;
     this.selectedDate = date.toLocaleDateString('fr-CA');
-    this.selectedRDVIndex = null; 
+    this.selectedRDVIndex = null;
   }
 
   openForm(index: number, rdv: any): void {
@@ -104,7 +78,18 @@ export class RendezVousComponent {
 
   submitForm(): void {
     if (this.formRendezVous.valid) {
-      console.log('✅ Affectation du mécanicien :', this.formRendezVous.value);
+      console.log(' Affectation du mécanicien :', this.formRendezVous.value);
     }
+  }
+  loadRendezVous(): void {
+    this.serviceService.getServices().subscribe({
+      next: (data: Service[]) => {
+        this.rendezVousData = data;
+        console.log("Données chargées:", this.rendezVousData);
+      },
+      error: (err) => {
+        console.error("Erreur lors de la récupération des services:", err);
+      }
+    });
   }
 }

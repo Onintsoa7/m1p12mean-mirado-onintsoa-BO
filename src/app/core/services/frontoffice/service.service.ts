@@ -113,4 +113,27 @@ export class ServiceService {
     return this.http.get<Service[]>(url);
   }
 
+  // Charge de travail par utilisateur par mois par date
+  getChargeDeTravailParMecanoParDateParMois(mecanicien: string, year: number, month: number): Observable<any> {
+    return this.http.get<any>(`${Constants.SERVICE_API}/mecanicien/${mecanicien}/duree-travail/${year}/${month}`);
+  }
+
+  // Récupérer tous les services dont la dateFixeVisite est aujourd'hui
+  getServicesToday(): Observable<any> {
+    return this.http.get<any[]>(`${Constants.SERVICE_API}/today`);
+  }
+
+  getCountByEtat(etat: string): Observable<{ count: number }> {
+    return this.http.get<{ count: number }>(`${Constants.SERVICE_API}/etat/${etat}`);
+  }
+
+  // Récupérer le montant total par mois pour une année donnée
+  getMontantTotalByYear(year: number): Observable<any> {
+    return this.http.get<any>(`${Constants.SERVICE_API}/montant-total/${year}`);
+  }
+  // Récupérer le montant total par mois pour une année donnée
+  getCA(): Observable<any> {
+    return this.http.get<any>(`${Constants.SERVICE_API}/montant-total/global`);
+  }
+
 }
