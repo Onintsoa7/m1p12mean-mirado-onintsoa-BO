@@ -23,21 +23,6 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit{
-  months = [
-    { name: 'Janvier', value: '01' },
-    { name: 'Février', value: '02' },
-    { name: 'Mars', value: '03' },
-    { name: 'Avril', value: '04' },
-    { name: 'Mai', value: '05' },
-    { name: 'Juin', value: '06' },
-    { name: 'Juillet', value: '07' },
-    { name: 'Août', value: '08' },
-    { name: 'Septembre', value: '09' },
-    { name: 'Octobre', value: '10' },
-    { name: 'Novembre', value: '11' },
-    { name: 'Décembre', value: '12' }
-  ];
-
   moisFiltre: Date = new Date();
   selectedMonth: string = '01';
   servicesDone : Number | undefined;
@@ -74,21 +59,18 @@ export class DashboardComponent implements OnInit{
     const todayMonth = today.getMonth();
     const todayYear = today.getFullYear();
 
-    // Si année future OU même année mais mois futur => désactivé
     return (
       currentYear > todayYear ||
       (currentYear === todayYear && currentMonth > todayMonth)
     );
   };
   updateChartOptions(): void {
-    // Préparer les données pour chaque mois de l'année
     const months = [
       'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
       'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
     ];
     const data: number[] = [];
 
-    // Remplir les données par mois (même ceux avec valeur 0)
     months.forEach((_, index) => {
       const monthKey = `${this.selectedYear}-${(index + 1).toString().padStart(2, '0')}`;
       data.push(this.salesData[monthKey] || 0);
